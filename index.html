@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plans d'entretien — Flotte Bus & Autocars</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface2: #334155;
+      --border: #475569;
+      --text: #f1f5f9;
+      --text2: #94a3b8;
+      --accent: #3b82f6;
+      --radius: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+    }
+    .header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: .3rem; }
+    .header p { color: var(--text2); font-size: .95rem; }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .tab {
+      padding: .85rem 1.5rem;
+      cursor: pointer;
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--text2);
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      transition: all .15s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+    .tab:hover { color: var(--text); background: var(--surface2); }
+    .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* Container */
+    .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: .75rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    /* Brand Section */
+    .brand-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2rem 0 1rem;
+      padding-bottom: .5rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .brand-header h2 { font-size: 1.4rem; }
+    .brand-count {
+      background: var(--accent);
+      color: white;
+      font-size: .75rem;
+      padding: .15rem .6rem;
+      border-radius: 99px;
+      font-weight: 600;
+    }
+
+    /* Model card */
+    .model-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: .75rem;
+      overflow: hidden;
+      transition: border-color .15s;
+    }
+    .model-card:hover { border-color: var(--accent); }
+    .model-header {
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+    .model-header:hover { background: rgba(59,130,246,.05); }
+    .model-name { font-weight: 600; font-size: 1.05rem; }
+    .model-tags { display: flex; gap: .4rem; flex-wrap: wrap; }
+    .tag {
+      font-size: .7rem;
+      padding: .15rem .55rem;
+      border-radius: 99px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .3px;
+    }
+    .tag-autocar { background: #1e3a5f; color: #60a5fa; }
+    .tag-interurbain { background: #2e1065; color: #a78bfa; }
+    .tag-urbain { background: #450a0a; color: #fca5a5; }
+    .tag-sprinter_city { background: #451a03; color: #fcd34d; }
+    .tag-minibus { background: #052e16; color: #6ee7b7; }
+    .tag-diesel { background: var(--surface2); color: var(--text2); }
+    .tag-gnv { background: #1a2e05; color: #a3e635; }
+    .chevron {
+      transition: transform .2s;
+      color: var(--text2);
+      font-size: 1.2rem;
+    }
+    .model-card.open .chevron { transform: rotate(180deg); }
+    .model-body {
+      display: none;
+      padding: 0 1.25rem 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .model-card.open .model-body { display: block; }
+
+    .particularite {
+      background: rgba(59,130,246,.08);
+      border-left: 3px solid var(--accent);
+      padding: .6rem 1rem;
+      margin: .75rem 0;
+      font-size: .88rem;
+      color: var(--text2);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    /* Schedule grid */
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: .6rem;
+      margin-top: .75rem;
+    }
+    .schedule-item {
+      background: var(--surface2);
+      border-radius: 8px;
+      padding: .65rem .85rem;
+      border-left: 3px solid;
+    }
+    .schedule-item .forfait-name { font-weight: 600; font-size: .85rem; }
+    .schedule-item .forfait-period { font-size: .78rem; color: var(--text2); margin-top: .15rem; }
+    .schedule-item.disabled { opacity: .3; border-left-color: var(--border) !important; }
+
+    /* Forfait detail */
+    .forfait-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+      border-left: 4px solid;
+      overflow: hidden;
+    }
+    .forfait-header {
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .forfait-header:hover { background: rgba(255,255,255,.02); }
+    .forfait-title {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .forfait-code {
+      font-size: 1.1rem;
+      font-weight: 700;
+      width: 2.5rem;
+    }
+    .forfait-label { font-weight: 600; }
+    .forfait-desc { font-size: .82rem; color: var(--text2); }
+    .forfait-body {
+      display: none;
+      padding: 0 1.25rem 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .forfait-card.open .forfait-body { display: block; }
+    .forfait-card.open .chevron { transform: rotate(180deg); }
+
+    .action-list { list-style: none; margin-top: .5rem; }
+    .action-list li {
+      padding: .45rem .6rem;
+      border-radius: 6px;
+      display: flex;
+      gap: .75rem;
+      align-items: baseline;
+      font-size: .88rem;
+    }
+    .action-list li:hover { background: var(--surface2); }
+    .action-code {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--accent);
+      min-width: 2.5rem;
+    }
+    .action-label { font-weight: 500; }
+    .action-desc { color: var(--text2); font-size: .8rem; margin-left: auto; }
+    .inherited-tag {
+      font-size: .65rem;
+      background: rgba(139,92,246,.15);
+      color: #a78bfa;
+      padding: .1rem .4rem;
+      border-radius: 4px;
+      margin-left: .5rem;
+    }
+
+    /* Actions catalog */
+    .domain-section { margin-bottom: 1.5rem; }
+    .domain-header {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: .5rem 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: .5rem;
+      color: var(--accent);
+    }
+
+    .actions-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+    }
+    .actions-table th {
+      text-align: left;
+      padding: .5rem .75rem;
+      background: var(--surface2);
+      font-weight: 600;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: var(--text2);
+    }
+    .actions-table td {
+      padding: .5rem .75rem;
+      border-bottom: 1px solid rgba(71,85,105,.3);
+    }
+    .actions-table tr:hover td { background: rgba(59,130,246,.04); }
+    .actions-table .code-cell {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-weight: 600;
+      color: var(--accent);
+      width: 3.5rem;
+    }
+
+    /* Matrix */
+    .matrix-wrapper { overflow-x: auto; margin-top: 1rem; }
+    .matrix-table {
+      border-collapse: collapse;
+      font-size: .78rem;
+      width: 100%;
+      min-width: 900px;
+    }
+    .matrix-table th, .matrix-table td {
+      padding: .45rem .6rem;
+      border: 1px solid var(--border);
+      text-align: center;
+      white-space: nowrap;
+    }
+    .matrix-table th {
+      background: var(--surface2);
+      font-weight: 600;
+      position: sticky;
+      top: 52px;
+      z-index: 10;
+    }
+    .matrix-table th:first-child,
+    .matrix-table th:nth-child(2) { text-align: left; }
+    .matrix-table td:first-child,
+    .matrix-table td:nth-child(2) { text-align: left; font-weight: 500; }
+    .matrix-table td:first-child { color: var(--text2); font-size: .75rem; }
+    .matrix-table tbody tr:hover td { background: rgba(59,130,246,.06); }
+    .matrix-cell-active { color: var(--text); font-weight: 500; }
+    .matrix-cell-na { color: var(--surface2); }
+    .brand-row td { background: var(--surface2) !important; font-weight: 700 !important; color: var(--text) !important; }
+
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .stat-value { font-size: 2rem; font-weight: 700; color: var(--accent); }
+    .stat-label { font-size: .82rem; color: var(--text2); margin-top: .2rem; }
+
+    /* Search */
+    .search-bar {
+      display: flex;
+      gap: .75rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .search-input {
+      flex: 1;
+      min-width: 200px;
+      padding: .65rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: .9rem;
+      outline: none;
+    }
+    .search-input:focus { border-color: var(--accent); }
+    .search-input::placeholder { color: var(--text2); }
+    .filter-btn {
+      padding: .5rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text2);
+      font-size: .82rem;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* Cycle visual */
+    .cycle-container { margin-top: 1.5rem; }
+    .cycle-row {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: .25rem;
+    }
+    .cycle-km {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: .82rem;
+      color: var(--text2);
+      min-width: 7rem;
+      text-align: right;
+    }
+    .cycle-bar {
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      padding: 0 .75rem;
+      font-size: .78rem;
+      font-weight: 600;
+      color: white;
+      min-width: 120px;
+    }
+    .cycle-connector {
+      width: 2px;
+      height: 12px;
+      background: var(--border);
+      margin-left: 8.5rem;
+    }
+
+    /* Print */
+    @media print {
+      body { background: white; color: black; }
+      .tabs, .search-bar { display: none; }
+      .section { display: block !important; page-break-before: always; }
+      .model-body, .forfait-body { display: block !important; }
+      .card, .model-card, .forfait-card { border-color: #ccc; }
+    }
+
+    @media (max-width: 768px) {
+      .header h1 { font-size: 1.3rem; }
+      .schedule-grid { grid-template-columns: 1fr; }
+      .action-desc { display: none; }
+      .tab { padding: .7rem 1rem; font-size: .8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Plans d'entretien — Flotte Bus & Autocars</h1>
+  <p>6 marques &bull; 31 modeles &bull; 8 forfaits mutualises &bull; 60+ actions</p>
+</div>
+
+<nav class="tabs" id="tabs">
+  <button class="tab active" data-tab="vehicules">Vehicules par marque</button>
+  <button class="tab" data-tab="forfaits">Forfaits</button>
+  <button class="tab" data-tab="actions">Catalogue actions</button>
+  <button class="tab" data-tab="matrice">Matrice</button>
+  <button class="tab" data-tab="cycles">Cycles d'entretien</button>
+</nav>
+
+<div class="container">
+
+  <!-- TAB: Vehicules -->
+  <div class="section active" id="section-vehicules">
+    <div class="search-bar">
+      <input type="text" class="search-input" id="search-models" placeholder="Rechercher un modele...">
+      <button class="filter-btn active" data-filter="all">Tous</button>
+      <button class="filter-btn" data-filter="autocar">Autocars</button>
+      <button class="filter-btn" data-filter="interurbain">Interurbains</button>
+      <button class="filter-btn" data-filter="urbain">Urbains</button>
+      <button class="filter-btn" data-filter="sprinter_city">Sprinter City</button>
+      <button class="filter-btn" data-filter="minibus">Minibus</button>
+      <button class="filter-btn" data-filter="gnv">GNV</button>
+    </div>
+    <div id="models-list"></div>
+  </div>
+
+  <!-- TAB: Forfaits -->
+  <div class="section" id="section-forfaits">
+    <div class="stats-grid" id="forfait-stats"></div>
+    <div id="forfaits-list"></div>
+  </div>
+
+  <!-- TAB: Actions -->
+  <div class="section" id="section-actions">
+    <div class="search-bar">
+      <input type="text" class="search-input" id="search-actions" placeholder="Rechercher une action (code ou description)...">
+    </div>
+    <div id="actions-catalog"></div>
+  </div>
+
+  <!-- TAB: Matrice -->
+  <div class="section" id="section-matrice">
+    <div class="card">
+      <h3>Matrice Forfaits x Modeles</h3>
+      <p style="color:var(--text2);font-size:.85rem;margin-bottom:.75rem;">Periodicite de chaque forfait par modele de vehicule</p>
+      <div class="matrix-wrapper" id="matrix-container"></div>
+    </div>
+  </div>
+
+  <!-- TAB: Cycles -->
+  <div class="section" id="section-cycles">
+    <div class="search-bar">
+      <button class="filter-btn active" data-cycle="autocar">Autocar (120 000 km)</button>
+      <button class="filter-btn" data-cycle="interurbain">Interurbain (100 000 km)</button>
+      <button class="filter-btn" data-cycle="urbain">Urbain diesel (80 000 km)</button>
+      <button class="filter-btn" data-cycle="urbain_gnv">Urbain GNV (80 000 km)</button>
+    </div>
+    <div class="card" id="cycle-display"></div>
+  </div>
+
+</div>
+
+<script>
+const DATA = /* loaded inline */ null;
+
+/* We load from the JSON file next to this HTML */
+let data;
+
+async function loadData() {
+  try {
+    const resp = await fetch('plan-entretien.json');
+    data = await resp.json();
+  } catch {
+    /* fallback: embedded minimal */
+    alert('Impossible de charger plan-entretien.json. Placez ce fichier HTML a cote du JSON.');
+    return;
+  }
+  init();
+}
+
+/* ---- TABS ---- */
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('section-' + t.dataset.tab).classList.add('active');
+  });
+});
+
+/* ---- HELPERS ---- */
+const forfaitColors = {
+  F1: '#3b82f6', F2: '#8b5cf6', F3: '#ef4444', F4: '#f59e0b',
+  F5: '#06b6d4', F6: '#10b981', F7: '#84cc16', F8: '#6b7280'
+};
+
+function getActionLabel(code) {
+  for (const domain of Object.values(data.actions)) {
+    if (domain.items[code]) return domain.items[code].label;
+  }
+  return code;
+}
+
+function getActionDesc(code) {
+  for (const domain of Object.values(data.actions)) {
+    if (domain.items[code]) return domain.items[code].description;
+  }
+  return '';
+}
+
+function getAllForfaitActions(forfaitKey) {
+  const f = data.forfaits[forfaitKey];
+  let actions = [...f.actions];
+  if (f.includes) {
+    actions = [...getAllForfaitActions(f.includes), ...actions];
+  }
+  return actions;
+}
+
+/* ---- RENDER: Models ---- */
+function renderModels(filter = 'all', search = '') {
+  const container = document.getElementById('models-list');
+  let html = '';
+  const s = search.toLowerCase();
+
+  for (const [marque, info] of Object.entries(data.marques)) {
+    let models = info.modeles;
+    if (filter === 'gnv') {
+      models = models.filter(m => m.carburant === 'gnv');
+    } else if (filter !== 'all') {
+      models = models.filter(m => m.categorie === filter);
+    }
+    if (s) {
+      models = models.filter(m => m.nom.toLowerCase().includes(s) || marque.toLowerCase().includes(s));
+    }
+    if (!models.length) continue;
+
+    html += `<div class="brand-header"><h2>${marque}</h2><span class="brand-count">${models.length} modele${models.length > 1 ? 's' : ''}</span></div>`;
+
+    for (const m of models) {
+      const id = `model-${marque}-${m.nom}`.replace(/[^a-zA-Z0-9]/g, '_');
+      html += `<div class="model-card" id="${id}">`;
+      html += `<div class="model-header" onclick="this.parentElement.classList.toggle('open')">`;
+      html += `<div><span class="model-name">${m.nom}</span>`;
+      html += `<div class="model-tags" style="margin-top:.3rem;">`;
+      html += `<span class="tag tag-${m.categorie}">${data.categories[m.categorie]?.label || m.categorie}</span>`;
+      html += `<span class="tag tag-${m.carburant}">${m.carburant.toUpperCase()}</span>`;
+      html += `</div></div>`;
+      html += `<span class="chevron">&#9662;</span></div>`;
+
+      html += `<div class="model-body">`;
+      if (m.particularite) {
+        html += `<div class="particularite">${m.particularite}</div>`;
+      }
+      html += `<div class="schedule-grid">`;
+      for (const [fk, period] of Object.entries(m.periodicite)) {
+        const disabled = !period;
+        const color = forfaitColors[fk] || '#6b7280';
+        html += `<div class="schedule-item ${disabled ? 'disabled' : ''}" style="border-left-color:${color}">`;
+        html += `<div class="forfait-name" style="color:${disabled ? 'var(--text2)' : color}">${fk} — ${data.forfaits[fk]?.label || fk}</div>`;
+        html += `<div class="forfait-period">${period || 'N/A'}</div>`;
+        html += `</div>`;
+      }
+      html += `</div></div></div>`;
+    }
+  }
+
+  if (!html) html = '<div class="card" style="text-align:center;color:var(--text2)">Aucun modele trouve</div>';
+  container.innerHTML = html;
+}
+
+/* ---- RENDER: Forfaits ---- */
+function renderForfaits() {
+  const statsEl = document.getElementById('forfait-stats');
+  const listEl = document.getElementById('forfaits-list');
+
+  // Stats
+  let totalActions = 0;
+  for (const domain of Object.values(data.actions)) totalActions += Object.keys(domain.items).length;
+  const totalModels = Object.values(data.marques).reduce((a, b) => a + b.modeles.length, 0);
+
+  statsEl.innerHTML = `
+    <div class="stat-card"><div class="stat-value">${Object.keys(data.forfaits).length}</div><div class="stat-label">Forfaits</div></div>
+    <div class="stat-card"><div class="stat-value">${totalActions}</div><div class="stat-label">Actions cataloguees</div></div>
+    <div class="stat-card"><div class="stat-value">${totalModels}</div><div class="stat-label">Modeles de vehicules</div></div>
+    <div class="stat-card"><div class="stat-value">${Object.keys(data.marques).length}</div><div class="stat-label">Marques</div></div>
+  `;
+
+  let html = '';
+  for (const [key, f] of Object.entries(data.forfaits)) {
+    const color = forfaitColors[key] || '#6b7280';
+    const allActions = getAllForfaitActions(key);
+    const ownActions = f.actions;
+
+    html += `<div class="forfait-card" style="border-left-color:${color}">`;
+    html += `<div class="forfait-header" onclick="this.parentElement.classList.toggle('open')">`;
+    html += `<div class="forfait-title">`;
+    html += `<span class="forfait-code" style="color:${color}">${key}</span>`;
+    html += `<div><div class="forfait-label">${f.label}</div><div class="forfait-desc">${f.description} &bull; ${allActions.length} actions</div></div>`;
+    html += `</div><span class="chevron">&#9662;</span></div>`;
+
+    html += `<div class="forfait-body">`;
+    if (f.note) {
+      html += `<div class="particularite">${f.note}</div>`;
+    }
+    if (f.includes) {
+      html += `<p style="font-size:.82rem;color:var(--text2);margin:.5rem 0;">Inclut le forfait <strong style="color:${forfaitColors[f.includes]}">${f.includes} — ${data.forfaits[f.includes].label}</strong></p>`;
+    }
+    html += `<ul class="action-list">`;
+    for (const code of allActions) {
+      const inherited = !ownActions.includes(code);
+      html += `<li>`;
+      html += `<span class="action-code">${code}</span>`;
+      html += `<span class="action-label">${getActionLabel(code)}${inherited ? `<span class="inherited-tag">via ${f.includes}</span>` : ''}</span>`;
+      html += `<span class="action-desc">${getActionDesc(code)}</span>`;
+      html += `</li>`;
+    }
+    html += `</ul></div></div>`;
+  }
+  listEl.innerHTML = html;
+}
+
+/* ---- RENDER: Actions catalog ---- */
+function renderActions(search = '') {
+  const container = document.getElementById('actions-catalog');
+  const s = search.toLowerCase();
+  let html = '';
+
+  for (const [domKey, domain] of Object.entries(data.actions)) {
+    const items = Object.entries(domain.items).filter(([code, a]) =>
+      !s || code.toLowerCase().includes(s) || a.label.toLowerCase().includes(s) || a.description.toLowerCase().includes(s)
+    );
+    if (!items.length) continue;
+
+    html += `<div class="domain-section">`;
+    html += `<div class="domain-header">${domKey} — ${domain.label}</div>`;
+    html += `<table class="actions-table"><thead><tr><th>Code</th><th>Action</th><th>Description</th><th>Forfaits</th></tr></thead><tbody>`;
+
+    for (const [code, a] of items) {
+      // find which forfaits use this action
+      const usedIn = [];
+      for (const [fk, f] of Object.entries(data.forfaits)) {
+        if (f.actions.includes(code)) usedIn.push(fk);
+      }
+      html += `<tr>`;
+      html += `<td class="code-cell">${code}</td>`;
+      html += `<td>${a.label}</td>`;
+      html += `<td style="color:var(--text2)">${a.description}</td>`;
+      html += `<td>${usedIn.map(f => `<span style="color:${forfaitColors[f]};font-weight:600;margin-right:.3rem;">${f}</span>`).join('')}</td>`;
+      html += `</tr>`;
+    }
+    html += `</tbody></table></div>`;
+  }
+
+  if (!html) html = '<div class="card" style="text-align:center;color:var(--text2)">Aucune action trouvee</div>';
+  container.innerHTML = html;
+}
+
+/* ---- RENDER: Matrix ---- */
+function renderMatrix() {
+  const container = document.getElementById('matrix-container');
+  const forfaitKeys = Object.keys(data.forfaits);
+
+  let html = '<table class="matrix-table"><thead><tr>';
+  html += '<th>Marque</th><th>Modele</th>';
+  for (const fk of forfaitKeys) {
+    html += `<th style="color:${forfaitColors[fk]}">${fk}</th>`;
+  }
+  html += '</tr></thead><tbody>';
+
+  for (const [marque, info] of Object.entries(data.marques)) {
+    html += `<tr class="brand-row"><td colspan="${2 + forfaitKeys.length}">${marque}</td></tr>`;
+    for (const m of info.modeles) {
+      html += '<tr>';
+      html += `<td>${marque}</td>`;
+      html += `<td>${m.nom}</td>`;
+      for (const fk of forfaitKeys) {
+        const v = m.periodicite[fk];
+        if (v) {
+          html += `<td class="matrix-cell-active">${v}</td>`;
+        } else {
+          html += `<td class="matrix-cell-na">—</td>`;
+        }
+      }
+      html += '</tr>';
+    }
+  }
+
+  html += '</tbody></table>';
+  container.innerHTML = html;
+}
+
+/* ---- RENDER: Cycles ---- */
+const cycleData = {
+  autocar: {
+    title: 'Cycle autocar diesel — 120 000 km',
+    steps: [
+      { km: '0 km', forfaits: ['F1'], label: 'Vidange initiale' },
+      { km: '30 000 km', forfaits: ['F1'], label: 'Entretien courant' },
+      { km: '60 000 km', forfaits: ['F2'], label: 'Entretien intermediaire' },
+      { km: '90 000 km', forfaits: ['F1'], label: 'Entretien courant' },
+      { km: '120 000 km', forfaits: ['F3', 'F4'], label: 'Grand entretien + Transmission' },
+    ],
+    annuel: ['F5 — Climatisation (1x/an)', 'F6 — Securite (1x/an + avant CT)'],
+    usure: ['F8 — Pneumatiques (a l\'usure, controle a chaque F1)']
+  },
+  interurbain: {
+    title: 'Cycle interurbain diesel — 100 000 km',
+    steps: [
+      { km: '0 km', forfaits: ['F1'], label: 'Vidange initiale' },
+      { km: '25 000 km', forfaits: ['F1'], label: 'Entretien courant' },
+      { km: '50 000 km', forfaits: ['F2'], label: 'Entretien intermediaire' },
+      { km: '75 000 km', forfaits: ['F1'], label: 'Entretien courant' },
+      { km: '100 000 km', forfaits: ['F3', 'F4'], label: 'Grand entretien + Transmission' },
+    ],
+    annuel: ['F5 — Climatisation (1x/an)', 'F6 — Securite (1x/an)'],
+    usure: ['F8 — Pneumatiques']
+  },
+  urbain: {
+    title: 'Cycle urbain diesel — 80 000 km',
+    steps: [
+      { km: '0 km', forfaits: ['F1'], label: 'Vidange initiale' },
+      { km: '20 000 km', forfaits: ['F1'], label: 'Entretien courant' },
+      { km: '40 000 km', forfaits: ['F2'], label: 'Entretien intermediaire' },
+      { km: '60 000 km', forfaits: ['F1'], label: 'Entretien courant' },
+      { km: '80 000 km', forfaits: ['F3', 'F4'], label: 'Grand entretien + Transmission' },
+    ],
+    annuel: ['F5 — Climatisation (2x/an)', 'F6 — Securite (2x/an)'],
+    usure: ['F8 — Pneumatiques (controle mensuel)']
+  },
+  urbain_gnv: {
+    title: 'Cycle urbain GNV — 80 000 km',
+    steps: [
+      { km: '0 km', forfaits: ['F1'], label: 'Vidange initiale' },
+      { km: '20 000 km', forfaits: ['F1'], label: 'Entretien courant' },
+      { km: '40 000 km', forfaits: ['F2', 'F7'], label: 'Intermediaire + GNV controle' },
+      { km: '60 000 km', forfaits: ['F1'], label: 'Entretien courant' },
+      { km: '80 000 km', forfaits: ['F3', 'F4', 'F7'], label: 'Grand entretien + Transmission + GNV complet' },
+    ],
+    annuel: ['F5 — Climatisation (2x/an)', 'F6 — Securite (2x/an)'],
+    usure: ['F8 — Pneumatiques (controle mensuel)', 'Requalification reservoirs GNV tous les 4-5 ans']
+  }
+};
+
+function renderCycle(type = 'autocar') {
+  const c = cycleData[type];
+  const container = document.getElementById('cycle-display');
+
+  let html = `<h3>${c.title}</h3>`;
+  html += '<div class="cycle-container">';
+
+  for (let i = 0; i < c.steps.length; i++) {
+    const step = c.steps[i];
+    html += '<div class="cycle-row">';
+    html += `<span class="cycle-km">${step.km}</span>`;
+    for (const fk of step.forfaits) {
+      html += `<div class="cycle-bar" style="background:${forfaitColors[fk]}">${fk} ${data.forfaits[fk]?.label || ''}</div>`;
+    }
+    html += '</div>';
+    if (i < c.steps.length - 1) {
+      html += '<div class="cycle-connector"></div>';
+    }
+  }
+  html += '</div>';
+
+  html += '<div style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem;">';
+  html += '<div class="card"><h3 style="color:#06b6d4">Entretiens periodiques</h3><ul style="list-style:none;margin-top:.5rem;">';
+  for (const a of c.annuel) html += `<li style="padding:.3rem 0;font-size:.88rem;">${a}</li>`;
+  html += '</ul></div>';
+  html += '<div class="card"><h3 style="color:#6b7280">A l\'usure / conditionnel</h3><ul style="list-style:none;margin-top:.5rem;">';
+  for (const u of c.usure) html += `<li style="padding:.3rem 0;font-size:.88rem;">${u}</li>`;
+  html += '</ul></div></div>';
+
+  container.innerHTML = html;
+}
+
+/* ---- EVENTS ---- */
+function init() {
+  renderModels();
+  renderForfaits();
+  renderActions();
+  renderMatrix();
+  renderCycle('autocar');
+
+  // Model search
+  document.getElementById('search-models').addEventListener('input', e => {
+    const active = document.querySelector('.filter-btn.active[data-filter]');
+    renderModels(active?.dataset.filter || 'all', e.target.value);
+  });
+
+  // Model filters
+  document.querySelectorAll('[data-filter]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderModels(btn.dataset.filter, document.getElementById('search-models').value);
+    });
+  });
+
+  // Action search
+  document.getElementById('search-actions').addEventListener('input', e => {
+    renderActions(e.target.value);
+  });
+
+  // Cycle toggles
+  document.querySelectorAll('[data-cycle]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-cycle]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCycle(btn.dataset.cycle);
+    });
+  });
+}
+
+loadData();
+</script>
+</body>
+</html>

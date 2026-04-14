@@ -1,0 +1,417 @@
+{
+  "actions": {
+    "A": {
+      "label": "Moteur & fluides",
+      "items": {
+        "A01": { "label": "Vidange moteur + filtre à huile", "description": "Remplacement huile moteur et filtre à huile" },
+        "A02": { "label": "Filtre à carburant diesel", "description": "Remplacement filtre(s) à gasoil (pré-filtre + filtre principal)" },
+        "A03": { "label": "Filtre à air moteur", "description": "Remplacement élément filtrant air moteur" },
+        "A04": { "label": "Filtre de ventilation cabine", "description": "Remplacement filtre(s) habitacle / ventilation passagers" },
+        "A05": { "label": "Filtre séparateur d'eau", "description": "Purge et/ou remplacement du séparateur eau-carburant" },
+        "A06": { "label": "Contrôle niveau et appoint AdBlue", "description": "Vérification circuit AdBlue, appoint si nécessaire" },
+        "A07": { "label": "Courroie(s) accessoires", "description": "Contrôle tension et état, remplacement si nécessaire" },
+        "A08": { "label": "Courroie de distribution", "description": "Remplacement selon préconisation constructeur" },
+        "A09": { "label": "Contrôle turbocompresseur", "description": "Inspection visuelle, jeu, étanchéité" }
+      }
+    },
+    "B": {
+      "label": "Refroidissement",
+      "items": {
+        "B01": { "label": "Contrôle circuit de refroidissement", "description": "Niveau, état liquide, étanchéité durites" },
+        "B02": { "label": "Remplacement liquide de refroidissement", "description": "Vidange et remplacement intégral" },
+        "B03": { "label": "Contrôle thermostat", "description": "Vérification ouverture/fermeture correcte" },
+        "B04": { "label": "Contrôle ventilateur / visco-coupleur", "description": "Fonctionnement, état des pales" }
+      }
+    },
+    "C": {
+      "label": "Freinage",
+      "items": {
+        "C01": { "label": "Contrôle plaquettes/garnitures", "description": "Mesure usure, remplacement si seuil atteint" },
+        "C02": { "label": "Contrôle disques / tambours", "description": "Mesure épaisseur / ovalisation, remplacement si nécessaire" },
+        "C03": { "label": "Réglage frein de parc", "description": "Réglage et contrôle efficacité" },
+        "C04": { "label": "Remplacement liquide de frein", "description": "Purge et remplacement intégral" },
+        "C05": { "label": "Contrôle circuit pneumatique de freinage", "description": "Étanchéité, pression, dessiccateur d'air" },
+        "C06": { "label": "Remplacement cartouche dessiccateur", "description": "Remplacement élément filtrant du dessiccateur d'air" },
+        "C07": { "label": "Contrôle ABS / EBS / ESP", "description": "Diagnostic électronique, capteurs" },
+        "C08": { "label": "Contrôle ralentisseur (retarder)", "description": "Niveau huile, fonctionnement" }
+      }
+    },
+    "D": {
+      "label": "Transmission",
+      "items": {
+        "D01": { "label": "Vidange BVA", "description": "Remplacement huile + filtre boîte automatique" },
+        "D02": { "label": "Vidange BVM", "description": "Remplacement huile boîte manuelle" },
+        "D03": { "label": "Vidange pont / différentiel", "description": "Remplacement huile de pont" },
+        "D04": { "label": "Contrôle embrayage", "description": "Garde, usure disque, butée (si BVM)" },
+        "D05": { "label": "Contrôle arbre de transmission / cardans", "description": "Jeu, croisillons, graissage" },
+        "D06": { "label": "Graissage général châssis", "description": "Graissage de tous les points (pivots, articulations)" }
+      }
+    },
+    "E": {
+      "label": "Direction & suspension",
+      "items": {
+        "E01": { "label": "Contrôle direction assistée", "description": "Niveau huile, étanchéité, jeu" },
+        "E02": { "label": "Contrôle suspension pneumatique", "description": "État coussins, compresseur, capteurs hauteur" },
+        "E03": { "label": "Contrôle amortisseurs", "description": "Fuite, efficacité" },
+        "E04": { "label": "Contrôle rotules / biellettes", "description": "Jeu, état, remplacement si nécessaire" },
+        "E05": { "label": "Géométrie / parallélisme", "description": "Réglage train avant et arrière" }
+      }
+    },
+    "F": {
+      "label": "Pneumatiques",
+      "items": {
+        "F01": { "label": "Contrôle pression et usure pneus", "description": "Mesure profondeur sculpture, pression, usure anormale" },
+        "F02": { "label": "Permutation / remplacement pneus", "description": "Rotation ou remplacement selon usure" },
+        "F03": { "label": "Contrôle roues et fixations", "description": "Serrage écrous, état jantes" }
+      }
+    },
+    "G": {
+      "label": "Électricité & électronique",
+      "items": {
+        "G01": { "label": "Contrôle batteries", "description": "Tension, état bornes, capacité" },
+        "G02": { "label": "Contrôle éclairage complet", "description": "Phares, feux, clignotants, éclairage intérieur" },
+        "G03": { "label": "Contrôle alternateur / démarreur", "description": "Charge, état courroie" },
+        "G04": { "label": "Diagnostic électronique général", "description": "Lecture défauts calculateurs (moteur, BVA, ABS, portes...)" },
+        "G05": { "label": "Contrôle essuie-glaces et lave-glace", "description": "État balais, fonctionnement gicleurs, niveau liquide" },
+        "G06": { "label": "Mise à jour logicielle", "description": "MAJ firmware calculateurs selon bulletins constructeur" }
+      }
+    },
+    "H": {
+      "label": "Carrosserie & sécurité",
+      "items": {
+        "H01": { "label": "Contrôle portes passagers", "description": "Mécanisme ouverture/fermeture, capteurs anti-pincement" },
+        "H02": { "label": "Contrôle rampe PMR / agenouillement", "description": "Fonctionnement rampe, système kneeling" },
+        "H03": { "label": "Contrôle issues de secours", "description": "Marteaux brise-vitre, trappes, signalétique" },
+        "H04": { "label": "Contrôle extincteurs", "description": "Date validité, pression, accessibilité" },
+        "H05": { "label": "Contrôle ceintures de sécurité", "description": "Fonctionnement enrouleur, état sangle" },
+        "H06": { "label": "Contrôle sièges et fixations", "description": "Serrage, état, mécanisme rabattable" },
+        "H07": { "label": "Contrôle soutes / coffres", "description": "Mécanisme, vérins, serrures (autocars uniquement)" },
+        "H08": { "label": "Contrôle rétroviseurs et caméras", "description": "Réglage, état, fonctionnement caméra recul" }
+      }
+    },
+    "J": {
+      "label": "Climatisation & chauffage",
+      "items": {
+        "J01": { "label": "Contrôle climatisation", "description": "Charge gaz, fonctionnement, étanchéité" },
+        "J02": { "label": "Recharge climatisation", "description": "Recharge gaz réfrigérant, contrôle compresseur" },
+        "J03": { "label": "Contrôle chauffage auxiliaire", "description": "Fonctionnement Webasto/Eberspächer, bougie, pompe" },
+        "J04": { "label": "Désinfection circuit aéraulique", "description": "Évaporateur, gaines, filtres" }
+      }
+    },
+    "K": {
+      "label": "Spécifique GNV",
+      "items": {
+        "K01": { "label": "Contrôle réservoirs GNV", "description": "Inspection visuelle, conformité (requalification périodique)" },
+        "K02": { "label": "Contrôle détendeur", "description": "Étanchéité, pression de sortie haute/basse pression" },
+        "K03": { "label": "Contrôle soupapes de sécurité", "description": "Fonctionnement, date de validité" },
+        "K04": { "label": "Contrôle capteur de fuite gaz", "description": "Calibration, fonctionnement alarme" },
+        "K05": { "label": "Remplacement bougies d'allumage", "description": "Remplacement bougies moteur gaz" },
+        "K06": { "label": "Contrôle vanne d'arrêt gaz", "description": "Fonctionnement ouverture/fermeture" },
+        "K07": { "label": "Filtre à gaz", "description": "Remplacement élément filtrant circuit gaz" }
+      }
+    }
+  },
+  "forfaits": {
+    "F1": {
+      "label": "Entretien courant",
+      "description": "Vidange + contrôles de base à chaque passage atelier",
+      "color": "#3b82f6",
+      "actions": ["A01", "A02", "A05", "A06", "B01", "C01", "C05", "D06", "F01", "G01", "G02", "G04", "G05"]
+    },
+    "F2": {
+      "label": "Entretien intermédiaire",
+      "description": "F1 + filtres complémentaires et contrôles approfondis",
+      "color": "#8b5cf6",
+      "includes": "F1",
+      "actions": ["A03", "A04", "A07", "C03", "C06", "C07", "E01", "E02", "E04", "H08"]
+    },
+    "F3": {
+      "label": "Grand entretien",
+      "description": "F2 + remplacement fluides majeurs et contrôles complets",
+      "color": "#ef4444",
+      "includes": "F2",
+      "actions": ["A09", "B02", "B03", "B04", "C02", "C04", "C08", "D05", "E03", "E05", "G03"]
+    },
+    "F4": {
+      "label": "Transmission",
+      "description": "Vidange boîte + pont, embrayage",
+      "color": "#f59e0b",
+      "actions": ["D01", "D03", "D04", "D05"]
+    },
+    "F5": {
+      "label": "Climatisation & chauffage",
+      "description": "Entretien annuel clim et chauffage (avant saison)",
+      "color": "#06b6d4",
+      "actions": ["J01", "J02", "J03", "J04", "A04"]
+    },
+    "F6": {
+      "label": "Sécurité & accessibilité",
+      "description": "Contrôle réglementaire complet",
+      "color": "#10b981",
+      "actions": ["H01", "H02", "H03", "H04", "H05", "H06", "H07", "H08"]
+    },
+    "F7": {
+      "label": "Spécifique GNV",
+      "description": "Contrôles spécifiques véhicules gaz naturel",
+      "color": "#84cc16",
+      "actions": ["K01", "K02", "K03", "K04", "K05", "K06", "K07"],
+      "note": "Remplace A02 et A05 (diesel) par K05 et K07"
+    },
+    "F8": {
+      "label": "Pneumatiques",
+      "description": "Remplacement pneus et géométrie",
+      "color": "#6b7280",
+      "actions": ["F01", "F02", "F03", "E05"]
+    }
+  },
+  "marques": {
+    "Mercedes": {
+      "modeles": [
+        {
+          "nom": "Inturo",
+          "categorie": "interurbain",
+          "carburant": "diesel",
+          "particularite": "Plateforme Tourismo — BVA, intervalles proches autocar",
+          "periodicite": { "F1": "25000km / 3 mois", "F2": "50000km / 6 mois", "F3": "100000km / 12 mois", "F4": "100000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Tourismo",
+          "categorie": "autocar",
+          "carburant": "diesel",
+          "particularite": "BVA 8 rapports — F4 avec D01. Retarder intégré — C08 à chaque F2",
+          "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Sprinter 22pl",
+          "categorie": "minibus",
+          "carburant": "diesel",
+          "particularite": "Base utilitaire — volumes fluides réduits",
+          "periodicite": { "F1": "20000km / 12 mois", "F2": "40000km / 12 mois", "F3": "60000km / 24 mois", "F4": "60000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Sprinter City 45",
+          "categorie": "sprinter_city",
+          "carburant": "diesel",
+          "particularite": "Version standard — BVA 7G-Tronic",
+          "periodicite": { "F1": "20000km / 12 mois", "F2": "40000km / 12 mois", "F3": "80000km / 24 mois", "F4": "80000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Sprinter City 35",
+          "categorie": "sprinter_city",
+          "carburant": "diesel",
+          "particularite": "~12m, 3 essieux — contrôle pont AR supplémentaire",
+          "periodicite": { "F1": "20000km / 12 mois", "F2": "40000km / 12 mois", "F3": "80000km / 24 mois", "F4": "80000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Sprinter City 65",
+          "categorie": "sprinter_city",
+          "carburant": "diesel",
+          "particularite": "Version allongée — articulation / soufflet à vérifier",
+          "periodicite": { "F1": "20000km / 12 mois", "F2": "40000km / 12 mois", "F3": "80000km / 24 mois", "F4": "80000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Tourino",
+          "categorie": "autocar",
+          "carburant": "diesel",
+          "particularite": "Midibus — volumes fluides réduits",
+          "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Setra 411",
+          "categorie": "autocar",
+          "carburant": "diesel",
+          "particularite": "Plateforme Mercedes — mêmes intervalles",
+          "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Setra 516",
+          "categorie": "autocar",
+          "carburant": "diesel",
+          "particularite": "Plateforme Mercedes — retarder ZF",
+          "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Citaro K",
+          "categorie": "urbain",
+          "carburant": "diesel",
+          "particularite": "Version courte — BVA Mercedes GO, suspension intégrale pneumatique",
+          "periodicite": { "F1": "20000km / 3 mois", "F2": "40000km / 6 mois", "F3": "80000km / 12 mois", "F4": "80000km / 2 ans", "F5": "2x/an", "F6": "2x/an", "F7": null, "F8": "mensuel" }
+        }
+      ]
+    },
+    "Iveco / Heuliez": {
+      "modeles": [
+        {
+          "nom": "Crossway Pop",
+          "categorie": "interurbain",
+          "carburant": "diesel",
+          "particularite": "Version allégée du Crossway — même motorisation Cursor 9",
+          "periodicite": { "F1": "25000km / 3 mois", "F2": "50000km / 6 mois", "F3": "100000km / 12 mois", "F4": "100000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Crossway",
+          "categorie": "interurbain",
+          "carburant": "diesel",
+          "particularite": "Moteur Cursor 9 FPT — BVA ZF EcoLife possible",
+          "periodicite": { "F1": "25000km / 3 mois", "F2": "50000km / 6 mois", "F3": "100000km / 12 mois", "F4": "100000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Récréo",
+          "categorie": "interurbain",
+          "carburant": "diesel",
+          "particularite": "Transport scolaire — renfort F6 (ceintures, sièges). Usage saisonnier",
+          "periodicite": { "F1": "25000km / 3 mois", "F2": "50000km / 6 mois", "F3": "100000km / 12 mois", "F4": "100000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Heuliez GX 327",
+          "categorie": "urbain",
+          "carburant": "diesel",
+          "particularite": "Modèle ancien — motorisation Iveco Cursor 8. Pièces en fin de vie",
+          "periodicite": { "F1": "20000km / 3 mois", "F2": "40000km / 6 mois", "F3": "80000km / 12 mois", "F4": "80000km / 2 ans", "F5": "2x/an", "F6": "2x/an", "F7": null, "F8": "mensuel" }
+        },
+        {
+          "nom": "Heuliez GX 137",
+          "categorie": "urbain",
+          "carburant": "diesel",
+          "particularite": "Midibus urbain — moteur FPT Tector, BVA Allison",
+          "periodicite": { "F1": "20000km / 3 mois", "F2": "40000km / 6 mois", "F3": "80000km / 12 mois", "F4": "80000km / 2 ans", "F5": "2x/an", "F6": "2x/an", "F7": null, "F8": "mensuel" }
+        },
+        {
+          "nom": "Heuliez GX 127",
+          "categorie": "urbain",
+          "carburant": "diesel",
+          "particularite": "Minibus urbain — moteur FPT, dimensions réduites",
+          "periodicite": { "F1": "20000km / 3 mois", "F2": "40000km / 6 mois", "F3": "80000km / 12 mois", "F4": "80000km / 2 ans", "F5": "2x/an", "F6": "2x/an", "F7": null, "F8": "mensuel" }
+        },
+        {
+          "nom": "Urbanway (GNV)",
+          "categorie": "urbain",
+          "carburant": "gnv",
+          "particularite": "Moteur Cursor 8 CNG — bougies K05 tous les 40 000 km",
+          "periodicite": { "F1": "20000km / 3 mois", "F2": "40000km / 6 mois", "F3": "80000km / 12 mois", "F4": "80000km / 2 ans", "F5": "2x/an", "F6": "2x/an", "F7": "40000km", "F8": "mensuel" }
+        },
+        {
+          "nom": "DailyAccess (GNV)",
+          "categorie": "minibus",
+          "carburant": "gnv",
+          "particularite": "Moteur FPT F1C CNG — base utilitaire GNV",
+          "periodicite": { "F1": "20000km / 12 mois", "F2": "40000km / 12 mois", "F3": "60000km / 24 mois", "F4": "60000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": "40000km", "F8": "usure" }
+        }
+      ]
+    },
+    "MAN": {
+      "modeles": [
+        {
+          "nom": "Lion Coach R10",
+          "categorie": "autocar",
+          "carburant": "diesel",
+          "particularite": "Moteur MAN D26 — vidange 40 000 km possible (consulter bulletin)",
+          "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Lion Coach R08",
+          "categorie": "autocar",
+          "carburant": "diesel",
+          "particularite": "Moteur MAN D20 — intervalles identiques au R10",
+          "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Lion Coach R07",
+          "categorie": "autocar",
+          "carburant": "diesel",
+          "particularite": "Moteur MAN D08 — intervalles identiques",
+          "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Neoplan",
+          "categorie": "autocar",
+          "carburant": "diesel",
+          "particularite": "Plateforme MAN — suivre intervalles MAN",
+          "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Lion City (GNV)",
+          "categorie": "urbain",
+          "carburant": "gnv",
+          "particularite": "Moteur MAN E18 CNG — bougies K05 tous les 30 000 km",
+          "periodicite": { "F1": "20000km / 3 mois", "F2": "40000km / 6 mois", "F3": "80000km / 12 mois", "F4": "80000km / 2 ans", "F5": "2x/an", "F6": "2x/an", "F7": "40000km", "F8": "mensuel" }
+        }
+      ]
+    },
+    "Scania": {
+      "modeles": [
+        {
+          "nom": "Interlink",
+          "categorie": "interurbain",
+          "carburant": "diesel",
+          "particularite": "Moteur Scania — huile longue durée possible (30 000 km F1)",
+          "periodicite": { "F1": "25000km / 3 mois", "F2": "50000km / 6 mois", "F3": "100000km / 12 mois", "F4": "100000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Touring",
+          "categorie": "autocar",
+          "carburant": "diesel",
+          "particularite": "Moteur Scania DC09/DC13 — vidange possible à 45 000 km (huile longue durée)",
+          "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Citywide (GNV)",
+          "categorie": "urbain",
+          "carburant": "gnv",
+          "particularite": "Moteur Scania OC09 — bougies K05 tous les 45 000 km",
+          "periodicite": { "F1": "20000km / 3 mois", "F2": "40000km / 6 mois", "F3": "80000km / 12 mois", "F4": "80000km / 2 ans", "F5": "2x/an", "F6": "2x/an", "F7": "40000km", "F8": "mensuel" }
+        }
+      ]
+    },
+    "Isuzu": {
+      "modeles": [
+        {
+          "nom": "Turquoise",
+          "categorie": "autocar",
+          "carburant": "diesel",
+          "particularite": "Moteur Cummins — vidange 20 000 km, F1 plus fréquent",
+          "periodicite": { "F1": "20000km / 3 mois", "F2": "40000km / 6 mois", "F3": "80000km / 12 mois", "F4": "80000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "Novociti Life",
+          "categorie": "urbain",
+          "carburant": "diesel",
+          "particularite": "Midibus urbain — moteur Isuzu ou Cummins, BVA Allison",
+          "periodicite": { "F1": "20000km / 3 mois", "F2": "40000km / 6 mois", "F3": "80000km / 12 mois", "F4": "80000km / 2 ans", "F5": "2x/an", "F6": "2x/an", "F7": null, "F8": "mensuel" }
+        }
+      ]
+    },
+    "Temsa": {
+      "modeles": [
+        {
+          "nom": "MD9",
+          "categorie": "autocar",
+          "carburant": "diesel",
+          "particularite": "Motorisation DAF/Paccar — intervalles standard",
+          "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "MD7",
+          "categorie": "autocar",
+          "carburant": "diesel",
+          "particularite": "Midibus Cummins — vidange 20 000 km comme Turquoise",
+          "periodicite": { "F1": "20000km / 6 mois", "F2": "40000km / 12 mois", "F3": "80000km / 24 mois", "F4": "80000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        },
+        {
+          "nom": "LD12",
+          "categorie": "autocar",
+          "carburant": "diesel",
+          "particularite": "Grand autocar — motorisation DAF/Paccar",
+          "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
+        }
+      ]
+    }
+  },
+  "categories": {
+    "autocar": { "label": "Autocar", "icon": "bus-alt", "color": "#3b82f6" },
+    "interurbain": { "label": "Interurbain", "icon": "route", "color": "#8b5cf6" },
+    "urbain": { "label": "Urbain", "icon": "city", "color": "#ef4444" },
+    "sprinter_city": { "label": "Sprinter City", "icon": "shuttle-van", "color": "#f59e0b" },
+    "minibus": { "label": "Minibus", "icon": "van-shuttle", "color": "#10b981" }
+  }
+}
