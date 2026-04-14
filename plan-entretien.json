@@ -85,7 +85,7 @@
         "H04": { "label": "Contrôle extincteurs", "description": "Date validité, pression, accessibilité" },
         "H05": { "label": "Contrôle ceintures de sécurité", "description": "Fonctionnement enrouleur, état sangle" },
         "H06": { "label": "Contrôle sièges et fixations", "description": "Serrage, état, mécanisme rabattable" },
-        "H07": { "label": "Contrôle soutes / coffres", "description": "Mécanisme, vérins, serrures (autocars uniquement)" },
+        "H07": { "label": "Contrôle soutes / coffres", "description": "Mécanisme, vérins, serrures (autocars)" },
         "H08": { "label": "Contrôle rétroviseurs et caméras", "description": "Réglage, état, fonctionnement caméra recul" }
       }
     },
@@ -109,6 +109,31 @@
         "K06": { "label": "Contrôle vanne d'arrêt gaz", "description": "Fonctionnement ouverture/fermeture" },
         "K07": { "label": "Filtre à gaz", "description": "Remplacement élément filtrant circuit gaz" }
       }
+    },
+    "L": {
+      "label": "Spécifique constructeur / modèle",
+      "items": {
+        "L01": { "label": "Diagnostic constructeur embarqué", "description": "Lecture via outil dédié (ASSYST Mercedes, DIANA MAN, SDP3 Scania, E.A.SY Iveco)" },
+        "L02": { "label": "Contrôle retarder intégré", "description": "Niveau huile retarder, usure rotor/stator, test efficacité" },
+        "L03": { "label": "Contrôle BVA robotisée constructeur", "description": "Calibration, points de passage (TipMatic, Opticruise, GO, AS-Tronic)" },
+        "L04": { "label": "Contrôle suspension pilotée ECAS/ELC", "description": "Capteurs hauteur, calibration, test agenouillement complet" },
+        "L05": { "label": "Contrôle soufflet d'articulation", "description": "État membrane, fixations, graissage platine tournante" },
+        "L06": { "label": "Contrôle platine tournante", "description": "Jeu, usure patin, graissage (bus articulés)" },
+        "L07": { "label": "Contrôle structurel renforcé", "description": "Inspection châssis, longerons, plancher, corrosion (véhicules > 15 ans)" },
+        "L08": { "label": "Contrôle vanne EGR", "description": "Encrassement, fonctionnement, nettoyage si nécessaire" },
+        "L09": { "label": "Contrôle système SCR / HI-SCR", "description": "Injecteur AdBlue, catalyseur SCR, capteurs NOx" },
+        "L10": { "label": "Contrôle catalyseur 3 voies (GNV)", "description": "Efficacité catalytique, sonde lambda amont/aval" },
+        "L11": { "label": "Analyse huile longue durée", "description": "Prélèvement et analyse labo pour validation intervalle étendu" },
+        "L12": { "label": "Contrôle sièges GT électriques", "description": "Réglages électriques, mémoire, prises USB/220V" },
+        "L13": { "label": "Contrôle ESP/ESC autocar", "description": "Test stabilité spécifique véhicule haut, capteurs lacet/accélération" },
+        "L14": { "label": "Contrôle BVA Allison", "description": "Diagnostic Allison DOC, niveaux, prognostics" },
+        "L15": { "label": "Contrôle BVA ZF EcoLife/TraXon", "description": "Diagnostic ZF-Diag, niveaux, calibration" },
+        "L16": { "label": "Contrôle réducteur de porte pneumatique", "description": "Pression, étanchéité vérins, tempo ouverture/fermeture" },
+        "L17": { "label": "Contrôle système AEBS / LDWS", "description": "Freinage d'urgence autonome, alerte franchissement de ligne" },
+        "L18": { "label": "Contrôle système anti-encastrement", "description": "État barres, fixations (autocar)" },
+        "L19": { "label": "Contrôle WC embarqué", "description": "Fonctionnement, étanchéité, vidange (autocars GT si équipé)" },
+        "L20": { "label": "Contrôle pont AR supplémentaire", "description": "Vidange et contrôle 2e pont arrière (3 essieux)" }
+      }
     }
   },
   "forfaits": {
@@ -116,52 +141,602 @@
       "label": "Entretien courant",
       "description": "Vidange + contrôles de base à chaque passage atelier",
       "color": "#3b82f6",
-      "actions": ["A01", "A02", "A05", "A06", "B01", "C01", "C05", "D06", "F01", "G01", "G02", "G04", "G05"]
+      "base": ["A01", "A02", "A05", "A06", "B01", "C01", "C05", "D06", "F01", "G01", "G02", "G04", "G05"],
+      "par_categorie": {
+        "autocar": {
+          "add": ["H07", "L13"],
+          "note": "Soutes + ESP autocar à chaque vidange"
+        },
+        "interurbain": {
+          "add": [],
+          "note": null
+        },
+        "urbain": {
+          "add": ["H01", "H02"],
+          "note": "Portes et PMR très sollicités en urbain — contrôle à chaque vidange"
+        },
+        "sprinter_city": {
+          "add": ["H01", "H02"],
+          "note": "Portes et PMR contrôlés à chaque vidange"
+        },
+        "minibus": {
+          "add": [],
+          "note": null
+        }
+      },
+      "par_carburant": {
+        "gnv": {
+          "add": ["K07"],
+          "remove": ["A02", "A05"],
+          "note": "Filtre gaz remplace filtres diesel"
+        }
+      },
+      "par_marque": {
+        "Mercedes": {
+          "add": ["L01"],
+          "note": "Lecture ASSYST à chaque passage"
+        },
+        "Iveco / Heuliez": {
+          "add": ["L01"],
+          "note": "Lecture E.A.SY à chaque passage"
+        },
+        "MAN": {
+          "add": ["L01"],
+          "note": "Lecture DIANA à chaque passage"
+        },
+        "Scania": {
+          "add": ["L01"],
+          "note": "Lecture SDP3 à chaque passage"
+        },
+        "Isuzu": {
+          "add": [],
+          "note": null
+        },
+        "Temsa": {
+          "add": [],
+          "note": null
+        }
+      },
+      "par_modele": {
+        "Tourismo": {
+          "add": ["L02"],
+          "note": "Retarder Voith très sollicité — contrôle dès F1"
+        },
+        "Setra 516": {
+          "add": ["L02"],
+          "note": "Retarder ZF intégré — contrôle dès F1"
+        },
+        "Citaro K": {
+          "add": ["L04"],
+          "note": "Suspension ECAS pilotée — contrôle à chaque vidange"
+        },
+        "Sprinter City 65": {
+          "add": ["L05", "L06"],
+          "note": "Bus articulé — soufflet et platine à chaque passage"
+        },
+        "Sprinter City 35": {
+          "add": ["L20"],
+          "note": "3 essieux — contrôle pont AR supplémentaire"
+        },
+        "Heuliez GX 327": {
+          "add": ["L07"],
+          "note": "Véhicule ancien/fin de vie — inspection structurelle renforcée"
+        },
+        "Urbanway (GNV)": {
+          "add": ["L10"],
+          "note": "Contrôle catalyseur 3 voies + lambda à chaque vidange"
+        },
+        "Lion City (GNV)": {
+          "add": ["L10"],
+          "note": "Contrôle catalyseur 3 voies + lambda"
+        },
+        "Citywide (GNV)": {
+          "add": ["L10"],
+          "note": "Contrôle catalyseur 3 voies + lambda"
+        }
+      }
     },
     "F2": {
       "label": "Entretien intermédiaire",
       "description": "F1 + filtres complémentaires et contrôles approfondis",
       "color": "#8b5cf6",
       "includes": "F1",
-      "actions": ["A03", "A04", "A07", "C03", "C06", "C07", "E01", "E02", "E04", "H08"]
+      "base": ["A03", "A04", "A07", "C03", "C06", "C07", "E01", "E02", "E04", "H08"],
+      "par_categorie": {
+        "autocar": {
+          "add": ["H05", "L17", "L18"],
+          "note": "Ceintures, AEBS/LDWS et anti-encastrement"
+        },
+        "interurbain": {
+          "add": ["H05", "L17"],
+          "note": "Ceintures et AEBS"
+        },
+        "urbain": {
+          "add": ["L16"],
+          "note": "Réducteurs de porte pneumatiques — contrôle approfondi"
+        },
+        "sprinter_city": {
+          "add": ["L16"],
+          "note": "Réducteurs de porte"
+        },
+        "minibus": {
+          "add": [],
+          "note": null
+        }
+      },
+      "par_carburant": {
+        "gnv": {
+          "add": ["K01", "K02", "K04", "K06"],
+          "remove": [],
+          "note": "Contrôle circuit gaz à chaque F2"
+        }
+      },
+      "par_marque": {
+        "Mercedes": {
+          "add": ["L08", "L09"],
+          "note": "EGR + SCR Mercedes BlueTec"
+        },
+        "Iveco / Heuliez": {
+          "add": ["L08", "L09"],
+          "note": "EGR + HI-SCR Iveco/FPT"
+        },
+        "MAN": {
+          "add": ["L08", "L09"],
+          "note": "EGR + SCR MAN"
+        },
+        "Scania": {
+          "add": ["L09"],
+          "note": "SCR Scania (pas d'EGR sur certains moteurs)"
+        },
+        "Isuzu": {
+          "add": ["L08"],
+          "note": "EGR Cummins/Isuzu"
+        },
+        "Temsa": {
+          "add": ["L08"],
+          "note": "EGR DAF/Cummins"
+        }
+      },
+      "par_modele": {
+        "Tourismo": {
+          "add": ["L12"],
+          "note": "Sièges GT électriques — test réglages et prises"
+        },
+        "Setra 411": {
+          "add": ["L12"],
+          "note": "Sièges GT — test réglages"
+        },
+        "Setra 516": {
+          "add": ["L12"],
+          "note": "Sièges GT HD — test complet"
+        },
+        "Tourino": {
+          "add": ["L12"],
+          "note": "Sièges GT — test réglages"
+        },
+        "Lion Coach R10": {
+          "add": ["L12", "L02"],
+          "note": "Sièges GT + retarder MAN PriTarder"
+        },
+        "Lion Coach R08": {
+          "add": ["L12", "L02"],
+          "note": "Sièges GT + retarder"
+        },
+        "Lion Coach R07": {
+          "add": ["L12"],
+          "note": "Sièges GT"
+        },
+        "Neoplan": {
+          "add": ["L12", "L02", "L19"],
+          "note": "GT Premium : sièges, retarder, WC embarqué si équipé"
+        },
+        "Touring": {
+          "add": ["L12", "L02"],
+          "note": "Sièges GT + retarder Scania"
+        },
+        "LD12": {
+          "add": ["L12", "L02"],
+          "note": "Grand autocar — sièges GT + retarder"
+        },
+        "MD9": {
+          "add": ["L12"],
+          "note": "Sièges tourisme"
+        },
+        "Crossway": {
+          "add": ["L15"],
+          "note": "BVA ZF EcoLife si équipé — diagnostic ZF-Diag"
+        },
+        "Heuliez GX 327": {
+          "add": ["L04"],
+          "note": "Suspension pilotée ancienne génération"
+        },
+        "Heuliez GX 137": {
+          "add": ["L14"],
+          "note": "BVA Allison — diagnostic DOC"
+        },
+        "Heuliez GX 127": {
+          "add": ["L14"],
+          "note": "BVA Allison — diagnostic DOC"
+        },
+        "Novociti Life": {
+          "add": ["L14"],
+          "note": "BVA Allison — diagnostic DOC"
+        },
+        "Récréo": {
+          "add": ["H05", "H06"],
+          "note": "Scolaire — renfort ceintures et sièges"
+        }
+      }
     },
     "F3": {
       "label": "Grand entretien",
       "description": "F2 + remplacement fluides majeurs et contrôles complets",
       "color": "#ef4444",
       "includes": "F2",
-      "actions": ["A09", "B02", "B03", "B04", "C02", "C04", "C08", "D05", "E03", "E05", "G03"]
+      "base": ["A09", "B02", "B03", "B04", "C02", "C04", "C08", "D05", "E03", "E05", "G03"],
+      "par_categorie": {
+        "autocar": {
+          "add": ["H06", "G06"],
+          "note": "Sièges complet + MAJ logicielle"
+        },
+        "interurbain": {
+          "add": ["H06", "G06"],
+          "note": "Sièges + MAJ logicielle"
+        },
+        "urbain": {
+          "add": ["G06", "H06"],
+          "note": "MAJ logicielle + sièges complet"
+        },
+        "sprinter_city": {
+          "add": ["G06"],
+          "note": "MAJ logicielle"
+        },
+        "minibus": {
+          "add": ["G06"],
+          "note": "MAJ logicielle"
+        }
+      },
+      "par_carburant": {
+        "gnv": {
+          "add": ["K03", "K05"],
+          "remove": [],
+          "note": "Soupapes sécurité + remplacement bougies allumage"
+        }
+      },
+      "par_marque": {
+        "Mercedes": {
+          "add": ["A08"],
+          "note": "Courroie distribution si applicable (OM651/654 Sprinter)"
+        },
+        "Iveco / Heuliez": {
+          "add": [],
+          "note": null
+        },
+        "MAN": {
+          "add": ["L03"],
+          "note": "Calibration BVA TipMatic"
+        },
+        "Scania": {
+          "add": ["L03", "L11"],
+          "note": "Calibration Opticruise + analyse huile longue durée"
+        },
+        "Isuzu": {
+          "add": [],
+          "note": null
+        },
+        "Temsa": {
+          "add": [],
+          "note": null
+        }
+      },
+      "par_modele": {
+        "Citaro K": {
+          "add": ["L03"],
+          "note": "Calibration BVA Mercedes GO"
+        },
+        "Sprinter City 65": {
+          "add": ["E03"],
+          "note": "Amortisseurs articulation — contrôle renforcé"
+        },
+        "Heuliez GX 327": {
+          "add": ["L07", "L04"],
+          "note": "Grand entretien renforcé — structurel + suspension (fin de vie)"
+        },
+        "Crossway": {
+          "add": ["L15"],
+          "note": "Calibration BVA ZF si équipé"
+        },
+        "Touring": {
+          "add": ["L11"],
+          "note": "Validation huile longue durée par analyse"
+        },
+        "Interlink": {
+          "add": ["L11"],
+          "note": "Validation huile longue durée par analyse"
+        },
+        "Turquoise": {
+          "add": [],
+          "note": "Moteur Cummins — pas d'huile longue durée"
+        }
+      }
     },
     "F4": {
       "label": "Transmission",
       "description": "Vidange boîte + pont, embrayage",
       "color": "#f59e0b",
-      "actions": ["D01", "D03", "D04", "D05"]
+      "base": ["D01", "D03", "D05"],
+      "par_categorie": {
+        "autocar": {
+          "add": ["D04"],
+          "note": "Contrôle embrayage si BVM/robotisée"
+        },
+        "interurbain": {
+          "add": ["D04"],
+          "note": "Contrôle embrayage si BVM/robotisée"
+        },
+        "urbain": {
+          "add": [],
+          "note": "Urbains en BVA exclusive — pas d'embrayage"
+        },
+        "sprinter_city": {
+          "add": [],
+          "note": "BVA 7G-Tronic — pas d'embrayage"
+        },
+        "minibus": {
+          "add": [],
+          "note": null
+        }
+      },
+      "par_carburant": {
+        "gnv": {
+          "add": [],
+          "remove": [],
+          "note": null
+        }
+      },
+      "par_marque": {
+        "Mercedes": {
+          "add": [],
+          "note": null
+        },
+        "Iveco / Heuliez": {
+          "add": [],
+          "note": null
+        },
+        "MAN": {
+          "add": ["L03"],
+          "note": "Recalibration TipMatic après vidange"
+        },
+        "Scania": {
+          "add": ["L03"],
+          "note": "Recalibration Opticruise après vidange"
+        },
+        "Isuzu": {
+          "add": [],
+          "note": null
+        },
+        "Temsa": {
+          "add": [],
+          "note": null
+        }
+      },
+      "par_modele": {
+        "Sprinter City 35": {
+          "add": ["L20"],
+          "note": "Vidange 2e pont AR (3 essieux)"
+        },
+        "Citaro K": {
+          "add": ["L03"],
+          "note": "Recalibration BVA Mercedes GO"
+        },
+        "Heuliez GX 137": {
+          "add": ["L14"],
+          "note": "Diagnostic Allison DOC post-vidange"
+        },
+        "Heuliez GX 127": {
+          "add": ["L14"],
+          "note": "Diagnostic Allison DOC post-vidange"
+        },
+        "Novociti Life": {
+          "add": ["L14"],
+          "note": "Diagnostic Allison DOC post-vidange"
+        },
+        "Crossway": {
+          "add": ["L15"],
+          "note": "Diagnostic ZF-Diag post-vidange si ZF EcoLife"
+        }
+      }
     },
     "F5": {
       "label": "Climatisation & chauffage",
-      "description": "Entretien annuel clim et chauffage (avant saison)",
+      "description": "Entretien clim et chauffage (saisonnier)",
       "color": "#06b6d4",
-      "actions": ["J01", "J02", "J03", "J04", "A04"]
+      "base": ["J01", "J02", "J03", "J04", "A04"],
+      "par_categorie": {
+        "autocar": {
+          "add": [],
+          "note": "Clim toit double flux — contrôle standard"
+        },
+        "interurbain": {
+          "add": [],
+          "note": null
+        },
+        "urbain": {
+          "add": [],
+          "note": "Clim très sollicitée — 2x/an recommandé"
+        },
+        "sprinter_city": {
+          "add": [],
+          "note": null
+        },
+        "minibus": {
+          "add": [],
+          "note": null
+        }
+      },
+      "par_carburant": {
+        "gnv": {
+          "add": [],
+          "remove": [],
+          "note": "Compresseur clim entraîné mécaniquement — mêmes contrôles"
+        }
+      },
+      "par_marque": {
+        "Mercedes": { "add": [], "note": null },
+        "Iveco / Heuliez": { "add": [], "note": null },
+        "MAN": { "add": [], "note": null },
+        "Scania": { "add": [], "note": null },
+        "Isuzu": { "add": [], "note": null },
+        "Temsa": { "add": [], "note": null }
+      },
+      "par_modele": {
+        "Neoplan": {
+          "add": ["L19"],
+          "note": "WC embarqué — vidange et désinfection si équipé"
+        },
+        "Tourismo": {
+          "add": [],
+          "note": "Clim Konvekta/Spheros — pièces spécifiques"
+        }
+      }
     },
     "F6": {
       "label": "Sécurité & accessibilité",
       "description": "Contrôle réglementaire complet",
       "color": "#10b981",
-      "actions": ["H01", "H02", "H03", "H04", "H05", "H06", "H07", "H08"]
+      "base": ["H01", "H02", "H03", "H04", "H05", "H06", "H08"],
+      "par_categorie": {
+        "autocar": {
+          "add": ["H07", "L17", "L18", "L13"],
+          "note": "Soutes, AEBS, anti-encastrement, ESP autocar"
+        },
+        "interurbain": {
+          "add": ["L17"],
+          "note": "AEBS si équipé"
+        },
+        "urbain": {
+          "add": ["L16"],
+          "note": "Réducteurs de porte — contrôle complet"
+        },
+        "sprinter_city": {
+          "add": ["L16"],
+          "note": "Réducteurs de porte"
+        },
+        "minibus": {
+          "add": [],
+          "note": null
+        }
+      },
+      "par_carburant": {
+        "gnv": {
+          "add": ["K01", "K03", "K04"],
+          "remove": [],
+          "note": "Réservoirs + soupapes + détection fuite = contrôle sécurité GNV"
+        }
+      },
+      "par_marque": {
+        "Mercedes": { "add": [], "note": null },
+        "Iveco / Heuliez": { "add": [], "note": null },
+        "MAN": { "add": [], "note": null },
+        "Scania": { "add": [], "note": null },
+        "Isuzu": { "add": [], "note": null },
+        "Temsa": { "add": [], "note": null }
+      },
+      "par_modele": {
+        "Neoplan": {
+          "add": ["L19", "L12"],
+          "note": "WC + sièges GT Premium"
+        },
+        "Setra 516": {
+          "add": ["L12"],
+          "note": "Sièges GT HD"
+        },
+        "Récréo": {
+          "add": [],
+          "note": "Scolaire — insister H05 (ceintures) et H06 (sièges)"
+        },
+        "Sprinter City 65": {
+          "add": ["L05", "L06"],
+          "note": "Soufflet + platine articulation = sécurité"
+        },
+        "Heuliez GX 327": {
+          "add": ["L07"],
+          "note": "Inspection structurelle renforcée"
+        }
+      }
     },
     "F7": {
       "label": "Spécifique GNV",
       "description": "Contrôles spécifiques véhicules gaz naturel",
       "color": "#84cc16",
-      "actions": ["K01", "K02", "K03", "K04", "K05", "K06", "K07"],
-      "note": "Remplace A02 et A05 (diesel) par K05 et K07"
+      "base": ["K01", "K02", "K03", "K04", "K05", "K06", "K07"],
+      "par_categorie": {},
+      "par_carburant": {},
+      "par_marque": {
+        "Mercedes": { "add": [], "note": null },
+        "Iveco / Heuliez": {
+          "add": ["L09"],
+          "note": "Contrôle HI-SCR spécifique Iveco CNG"
+        },
+        "MAN": { "add": [], "note": null },
+        "Scania": { "add": [], "note": null },
+        "Isuzu": { "add": [], "note": null },
+        "Temsa": { "add": [], "note": null }
+      },
+      "par_modele": {
+        "Urbanway (GNV)": {
+          "add": ["L10"],
+          "note": "Cursor 8 CNG — catalyseur 3 voies + lambda"
+        },
+        "Lion City (GNV)": {
+          "add": ["L10"],
+          "note": "E18 CNG — catalyseur 3 voies + lambda"
+        },
+        "Citywide (GNV)": {
+          "add": ["L10"],
+          "note": "OC09 CNG — catalyseur 3 voies + lambda"
+        },
+        "DailyAccess (GNV)": {
+          "add": ["L10"],
+          "note": "F1C CNG — catalyseur + lambda"
+        }
+      }
     },
     "F8": {
       "label": "Pneumatiques",
       "description": "Remplacement pneus et géométrie",
       "color": "#6b7280",
-      "actions": ["F01", "F02", "F03", "E05"]
+      "base": ["F01", "F02", "F03", "E05"],
+      "par_categorie": {
+        "autocar": {
+          "add": [],
+          "note": "Pneus route — usure régulière"
+        },
+        "interurbain": {
+          "add": [],
+          "note": "Pneus mixtes route/urbain"
+        },
+        "urbain": {
+          "add": [],
+          "note": "Usure rapide (braquage, stop&go) — contrôle mensuel"
+        },
+        "sprinter_city": {
+          "add": [],
+          "note": "Pneus utilitaires renforcés"
+        },
+        "minibus": {
+          "add": [],
+          "note": "Pneus utilitaires"
+        }
+      },
+      "par_carburant": {},
+      "par_marque": {},
+      "par_modele": {
+        "Sprinter City 35": {
+          "add": ["L20"],
+          "note": "3 essieux — géométrie incluant essieu AR supplémentaire"
+        }
+      }
     }
   },
   "marques": {
@@ -178,7 +753,7 @@
           "nom": "Tourismo",
           "categorie": "autocar",
           "carburant": "diesel",
-          "particularite": "BVA 8 rapports — F4 avec D01. Retarder intégré — C08 à chaque F2",
+          "particularite": "BVA 8 rapports — retarder Voith intégré",
           "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
         },
         {
@@ -199,21 +774,21 @@
           "nom": "Sprinter City 35",
           "categorie": "sprinter_city",
           "carburant": "diesel",
-          "particularite": "~12m, 3 essieux — contrôle pont AR supplémentaire",
+          "particularite": "~12m, 3 essieux — pont AR supplémentaire",
           "periodicite": { "F1": "20000km / 12 mois", "F2": "40000km / 12 mois", "F3": "80000km / 24 mois", "F4": "80000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
         },
         {
           "nom": "Sprinter City 65",
           "categorie": "sprinter_city",
           "carburant": "diesel",
-          "particularite": "Version allongée — articulation / soufflet à vérifier",
+          "particularite": "Version articulée — soufflet et platine tournante",
           "periodicite": { "F1": "20000km / 12 mois", "F2": "40000km / 12 mois", "F3": "80000km / 24 mois", "F4": "80000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
         },
         {
           "nom": "Tourino",
           "categorie": "autocar",
           "carburant": "diesel",
-          "particularite": "Midibus — volumes fluides réduits",
+          "particularite": "Midibus tourisme — volumes fluides réduits",
           "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
         },
         {
@@ -227,14 +802,14 @@
           "nom": "Setra 516",
           "categorie": "autocar",
           "carburant": "diesel",
-          "particularite": "Plateforme Mercedes — retarder ZF",
+          "particularite": "HD — retarder ZF intégré",
           "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
         },
         {
           "nom": "Citaro K",
           "categorie": "urbain",
           "carburant": "diesel",
-          "particularite": "Version courte — BVA Mercedes GO, suspension intégrale pneumatique",
+          "particularite": "Version courte — BVA Mercedes GO, suspension ECAS",
           "periodicite": { "F1": "20000km / 3 mois", "F2": "40000km / 6 mois", "F3": "80000km / 12 mois", "F4": "80000km / 2 ans", "F5": "2x/an", "F6": "2x/an", "F7": null, "F8": "mensuel" }
         }
       ]
@@ -245,7 +820,7 @@
           "nom": "Crossway Pop",
           "categorie": "interurbain",
           "carburant": "diesel",
-          "particularite": "Version allégée du Crossway — même motorisation Cursor 9",
+          "particularite": "Version allégée du Crossway — motorisation Cursor 9",
           "periodicite": { "F1": "25000km / 3 mois", "F2": "50000km / 6 mois", "F3": "100000km / 12 mois", "F4": "100000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
         },
         {
@@ -259,14 +834,14 @@
           "nom": "Récréo",
           "categorie": "interurbain",
           "carburant": "diesel",
-          "particularite": "Transport scolaire — renfort F6 (ceintures, sièges). Usage saisonnier",
+          "particularite": "Transport scolaire — renfort sécurité ceintures/sièges",
           "periodicite": { "F1": "25000km / 3 mois", "F2": "50000km / 6 mois", "F3": "100000km / 12 mois", "F4": "100000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
         },
         {
           "nom": "Heuliez GX 327",
           "categorie": "urbain",
           "carburant": "diesel",
-          "particularite": "Modèle ancien — motorisation Iveco Cursor 8. Pièces en fin de vie",
+          "particularite": "Modèle ancien — Cursor 8, pièces en fin de vie",
           "periodicite": { "F1": "20000km / 3 mois", "F2": "40000km / 6 mois", "F3": "80000km / 12 mois", "F4": "80000km / 2 ans", "F5": "2x/an", "F6": "2x/an", "F7": null, "F8": "mensuel" }
         },
         {
@@ -287,7 +862,7 @@
           "nom": "Urbanway (GNV)",
           "categorie": "urbain",
           "carburant": "gnv",
-          "particularite": "Moteur Cursor 8 CNG — bougies K05 tous les 40 000 km",
+          "particularite": "Moteur Cursor 8 CNG — bougies tous les 40 000 km",
           "periodicite": { "F1": "20000km / 3 mois", "F2": "40000km / 6 mois", "F3": "80000km / 12 mois", "F4": "80000km / 2 ans", "F5": "2x/an", "F6": "2x/an", "F7": "40000km", "F8": "mensuel" }
         },
         {
@@ -305,35 +880,35 @@
           "nom": "Lion Coach R10",
           "categorie": "autocar",
           "carburant": "diesel",
-          "particularite": "Moteur MAN D26 — vidange 40 000 km possible (consulter bulletin)",
+          "particularite": "Moteur MAN D26 — vidange 40 000 km possible (bulletin)",
           "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
         },
         {
           "nom": "Lion Coach R08",
           "categorie": "autocar",
           "carburant": "diesel",
-          "particularite": "Moteur MAN D20 — intervalles identiques au R10",
+          "particularite": "Moteur MAN D20",
           "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
         },
         {
           "nom": "Lion Coach R07",
           "categorie": "autocar",
           "carburant": "diesel",
-          "particularite": "Moteur MAN D08 — intervalles identiques",
+          "particularite": "Moteur MAN D08",
           "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
         },
         {
           "nom": "Neoplan",
           "categorie": "autocar",
           "carburant": "diesel",
-          "particularite": "Plateforme MAN — suivre intervalles MAN",
+          "particularite": "Premium — plateforme MAN, WC possible",
           "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
         },
         {
           "nom": "Lion City (GNV)",
           "categorie": "urbain",
           "carburant": "gnv",
-          "particularite": "Moteur MAN E18 CNG — bougies K05 tous les 30 000 km",
+          "particularite": "Moteur MAN E18 CNG — bougies tous les 30 000 km",
           "periodicite": { "F1": "20000km / 3 mois", "F2": "40000km / 6 mois", "F3": "80000km / 12 mois", "F4": "80000km / 2 ans", "F5": "2x/an", "F6": "2x/an", "F7": "40000km", "F8": "mensuel" }
         }
       ]
@@ -344,21 +919,21 @@
           "nom": "Interlink",
           "categorie": "interurbain",
           "carburant": "diesel",
-          "particularite": "Moteur Scania — huile longue durée possible (30 000 km F1)",
+          "particularite": "Moteur Scania — huile longue durée possible",
           "periodicite": { "F1": "25000km / 3 mois", "F2": "50000km / 6 mois", "F3": "100000km / 12 mois", "F4": "100000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
         },
         {
           "nom": "Touring",
           "categorie": "autocar",
           "carburant": "diesel",
-          "particularite": "Moteur Scania DC09/DC13 — vidange possible à 45 000 km (huile longue durée)",
+          "particularite": "Moteur DC09/DC13 — huile longue durée possible (45 000 km)",
           "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
         },
         {
           "nom": "Citywide (GNV)",
           "categorie": "urbain",
           "carburant": "gnv",
-          "particularite": "Moteur Scania OC09 — bougies K05 tous les 45 000 km",
+          "particularite": "Moteur OC09 CNG — bougies tous les 45 000 km",
           "periodicite": { "F1": "20000km / 3 mois", "F2": "40000km / 6 mois", "F3": "80000km / 12 mois", "F4": "80000km / 2 ans", "F5": "2x/an", "F6": "2x/an", "F7": "40000km", "F8": "mensuel" }
         }
       ]
@@ -369,14 +944,14 @@
           "nom": "Turquoise",
           "categorie": "autocar",
           "carburant": "diesel",
-          "particularite": "Moteur Cummins — vidange 20 000 km, F1 plus fréquent",
+          "particularite": "Moteur Cummins — vidange 20 000 km",
           "periodicite": { "F1": "20000km / 3 mois", "F2": "40000km / 6 mois", "F3": "80000km / 12 mois", "F4": "80000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
         },
         {
           "nom": "Novociti Life",
           "categorie": "urbain",
           "carburant": "diesel",
-          "particularite": "Midibus urbain — moteur Isuzu ou Cummins, BVA Allison",
+          "particularite": "Midibus urbain — BVA Allison",
           "periodicite": { "F1": "20000km / 3 mois", "F2": "40000km / 6 mois", "F3": "80000km / 12 mois", "F4": "80000km / 2 ans", "F5": "2x/an", "F6": "2x/an", "F7": null, "F8": "mensuel" }
         }
       ]
@@ -387,14 +962,14 @@
           "nom": "MD9",
           "categorie": "autocar",
           "carburant": "diesel",
-          "particularite": "Motorisation DAF/Paccar — intervalles standard",
+          "particularite": "Motorisation DAF/Paccar",
           "periodicite": { "F1": "30000km / 6 mois", "F2": "60000km / 12 mois", "F3": "120000km / 24 mois", "F4": "120000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
         },
         {
           "nom": "MD7",
           "categorie": "autocar",
           "carburant": "diesel",
-          "particularite": "Midibus Cummins — vidange 20 000 km comme Turquoise",
+          "particularite": "Midibus Cummins — vidange 20 000 km",
           "periodicite": { "F1": "20000km / 6 mois", "F2": "40000km / 12 mois", "F3": "80000km / 24 mois", "F4": "80000km / 3 ans", "F5": "1x/an", "F6": "1x/an", "F7": null, "F8": "usure" }
         },
         {
@@ -408,10 +983,10 @@
     }
   },
   "categories": {
-    "autocar": { "label": "Autocar", "icon": "bus-alt", "color": "#3b82f6" },
-    "interurbain": { "label": "Interurbain", "icon": "route", "color": "#8b5cf6" },
-    "urbain": { "label": "Urbain", "icon": "city", "color": "#ef4444" },
-    "sprinter_city": { "label": "Sprinter City", "icon": "shuttle-van", "color": "#f59e0b" },
-    "minibus": { "label": "Minibus", "icon": "van-shuttle", "color": "#10b981" }
+    "autocar": { "label": "Autocar", "color": "#3b82f6" },
+    "interurbain": { "label": "Interurbain", "color": "#8b5cf6" },
+    "urbain": { "label": "Urbain", "color": "#ef4444" },
+    "sprinter_city": { "label": "Sprinter City", "color": "#f59e0b" },
+    "minibus": { "label": "Minibus", "color": "#10b981" }
   }
 }

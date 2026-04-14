@@ -15,122 +15,76 @@
       --accent: #3b82f6;
       --radius: 10px;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
+      background: var(--bg); color: var(--text); line-height: 1.5;
     }
 
-    /* Header */
     .header {
       background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
       border-bottom: 1px solid var(--border);
-      padding: 2rem;
-      text-align: center;
+      padding: 2rem; text-align: center;
     }
     .header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: .3rem; }
     .header p { color: var(--text2); font-size: .95rem; }
 
-    /* Tabs */
     .tabs {
-      display: flex;
-      gap: 0;
-      background: var(--surface);
+      display: flex; gap: 0; background: var(--surface);
       border-bottom: 1px solid var(--border);
-      overflow-x: auto;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      overflow-x: auto; position: sticky; top: 0; z-index: 100;
     }
     .tab {
-      padding: .85rem 1.5rem;
-      cursor: pointer;
-      font-size: .9rem;
-      font-weight: 500;
-      color: var(--text2);
-      border-bottom: 3px solid transparent;
-      white-space: nowrap;
-      transition: all .15s;
-      background: none;
-      border-top: none;
-      border-left: none;
-      border-right: none;
+      padding: .85rem 1.5rem; cursor: pointer; font-size: .9rem; font-weight: 500;
+      color: var(--text2); border-bottom: 3px solid transparent;
+      white-space: nowrap; transition: all .15s;
+      background: none; border-top: none; border-left: none; border-right: none;
     }
     .tab:hover { color: var(--text); background: var(--surface2); }
     .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
 
-    /* Container */
     .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
     .section { display: none; }
     .section.active { display: block; }
 
-    /* Cards */
     .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
-      margin-bottom: 1rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem;
     }
-    .card h3 {
-      font-size: 1.1rem;
-      margin-bottom: .75rem;
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-    }
+    .card h3 { font-size: 1.1rem; margin-bottom: .75rem; display: flex; align-items: center; gap: .5rem; }
 
-    /* Brand Section */
-    .brand-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin: 2rem 0 1rem;
-      padding-bottom: .5rem;
-      border-bottom: 2px solid var(--border);
+    /* Search & filters */
+    .search-bar { display: flex; gap: .75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .search-input {
+      flex: 1; min-width: 200px; padding: .65rem 1rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-size: .9rem; outline: none;
     }
-    .brand-header h2 { font-size: 1.4rem; }
-    .brand-count {
-      background: var(--accent);
-      color: white;
-      font-size: .75rem;
-      padding: .15rem .6rem;
-      border-radius: 99px;
-      font-weight: 600;
+    .search-input:focus { border-color: var(--accent); }
+    .search-input::placeholder { color: var(--text2); }
+    .filter-btn {
+      padding: .5rem 1rem; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text2); font-size: .82rem; cursor: pointer; transition: all .15s;
     }
+    .filter-btn:hover, .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
 
-    /* Model card */
-    .model-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      margin-bottom: .75rem;
-      overflow: hidden;
-      transition: border-color .15s;
+    /* Stats */
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem; margin-bottom: 2rem;
     }
-    .model-card:hover { border-color: var(--accent); }
-    .model-header {
-      padding: 1rem 1.25rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      user-select: none;
+    .stat-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem; text-align: center;
     }
-    .model-header:hover { background: rgba(59,130,246,.05); }
-    .model-name { font-weight: 600; font-size: 1.05rem; }
-    .model-tags { display: flex; gap: .4rem; flex-wrap: wrap; }
+    .stat-value { font-size: 2rem; font-weight: 700; color: var(--accent); }
+    .stat-label { font-size: .82rem; color: var(--text2); margin-top: .2rem; }
+
+    /* Tags */
     .tag {
-      font-size: .7rem;
-      padding: .15rem .55rem;
-      border-radius: 99px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .3px;
+      font-size: .7rem; padding: .15rem .55rem; border-radius: 99px;
+      font-weight: 600; text-transform: uppercase; letter-spacing: .3px;
+      display: inline-block;
     }
     .tag-autocar { background: #1e3a5f; color: #60a5fa; }
     .tag-interurbain { background: #2e1065; color: #a78bfa; }
@@ -139,279 +93,185 @@
     .tag-minibus { background: #052e16; color: #6ee7b7; }
     .tag-diesel { background: var(--surface2); color: var(--text2); }
     .tag-gnv { background: #1a2e05; color: #a3e635; }
-    .chevron {
-      transition: transform .2s;
-      color: var(--text2);
-      font-size: 1.2rem;
+
+    /* Chevron */
+    .chevron { transition: transform .2s; color: var(--text2); font-size: 1.2rem; }
+
+    /* Brand */
+    .brand-header {
+      display: flex; align-items: center; gap: 1rem;
+      margin: 2rem 0 1rem; padding-bottom: .5rem; border-bottom: 2px solid var(--border);
     }
-    .model-card.open .chevron { transform: rotate(180deg); }
+    .brand-header h2 { font-size: 1.4rem; }
+    .brand-count {
+      background: var(--accent); color: white; font-size: .75rem;
+      padding: .15rem .6rem; border-radius: 99px; font-weight: 600;
+    }
+
+    /* Model card */
+    .model-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); margin-bottom: .75rem; overflow: hidden; transition: border-color .15s;
+    }
+    .model-card:hover { border-color: var(--accent); }
+    .model-header {
+      padding: 1rem 1.25rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; user-select: none;
+    }
+    .model-header:hover { background: rgba(59,130,246,.05); }
+    .model-name { font-weight: 600; font-size: 1.05rem; }
+    .model-tags { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .3rem; }
     .model-body {
-      display: none;
-      padding: 0 1.25rem 1.25rem;
-      border-top: 1px solid var(--border);
+      display: none; padding: 0 1.25rem 1.25rem; border-top: 1px solid var(--border);
     }
     .model-card.open .model-body { display: block; }
+    .model-card.open .chevron { transform: rotate(180deg); }
 
     .particularite {
-      background: rgba(59,130,246,.08);
-      border-left: 3px solid var(--accent);
-      padding: .6rem 1rem;
-      margin: .75rem 0;
-      font-size: .88rem;
-      color: var(--text2);
+      background: rgba(59,130,246,.08); border-left: 3px solid var(--accent);
+      padding: .6rem 1rem; margin: .75rem 0; font-size: .88rem; color: var(--text2);
       border-radius: 0 var(--radius) var(--radius) 0;
     }
 
-    /* Schedule grid */
-    .schedule-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: .6rem;
-      margin-top: .75rem;
+    /* Forfait select in model view */
+    .forfait-tabs {
+      display: flex; gap: .4rem; flex-wrap: wrap; margin: .75rem 0;
     }
-    .schedule-item {
-      background: var(--surface2);
-      border-radius: 8px;
-      padding: .65rem .85rem;
-      border-left: 3px solid;
+    .forfait-tab {
+      padding: .35rem .75rem; border-radius: 6px; font-size: .8rem; font-weight: 600;
+      cursor: pointer; border: 2px solid; opacity: .5; transition: all .15s;
+      background: transparent; color: var(--text);
     }
-    .schedule-item .forfait-name { font-weight: 600; font-size: .85rem; }
-    .schedule-item .forfait-period { font-size: .78rem; color: var(--text2); margin-top: .15rem; }
-    .schedule-item.disabled { opacity: .3; border-left-color: var(--border) !important; }
+    .forfait-tab:hover { opacity: .8; }
+    .forfait-tab.active { opacity: 1; background: rgba(255,255,255,.05); }
+    .forfait-tab.disabled { opacity: .2; cursor: default; }
+
+    /* Heritage tree */
+    .heritage-panel { margin-top: .75rem; }
+    .heritage-level {
+      border-left: 3px solid; padding: .5rem 0 .5rem 1rem; margin-bottom: .25rem;
+    }
+    .heritage-level-header {
+      font-size: .82rem; font-weight: 600; margin-bottom: .3rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .heritage-level-tag {
+      font-size: .65rem; padding: .1rem .4rem; border-radius: 4px; font-weight: 600;
+    }
+    .level-base .heritage-level-tag { background: rgba(59,130,246,.15); color: #60a5fa; }
+    .level-categorie .heritage-level-tag { background: rgba(139,92,246,.15); color: #a78bfa; }
+    .level-carburant .heritage-level-tag { background: rgba(132,204,22,.15); color: #a3e635; }
+    .level-marque .heritage-level-tag { background: rgba(245,158,11,.15); color: #fbbf24; }
+    .level-modele .heritage-level-tag { background: rgba(239,68,68,.15); color: #fca5a5; }
+
+    .heritage-actions { list-style: none; }
+    .heritage-actions li {
+      padding: .3rem .5rem; border-radius: 4px; display: flex; gap: .5rem;
+      align-items: baseline; font-size: .84rem;
+    }
+    .heritage-actions li:hover { background: var(--surface2); }
+    .action-code {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: .78rem; font-weight: 600; color: var(--accent); min-width: 2.2rem;
+    }
+    .action-removed {
+      text-decoration: line-through; opacity: .4;
+    }
+    .action-removed .action-code { color: #ef4444; }
+    .heritage-note {
+      font-size: .78rem; color: var(--text2); font-style: italic; margin-top: .2rem;
+    }
+    .no-actions { font-size: .8rem; color: var(--text2); font-style: italic; }
+
+    .heritage-summary {
+      background: var(--surface2); border-radius: 8px; padding: .75rem 1rem; margin-top: .75rem;
+    }
+    .heritage-summary-title { font-size: .85rem; font-weight: 600; margin-bottom: .4rem; }
+    .heritage-summary-count { font-size: .78rem; color: var(--text2); }
 
     /* Forfait detail */
     .forfait-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      margin-bottom: 1rem;
-      border-left: 4px solid;
-      overflow: hidden;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); margin-bottom: 1rem; border-left: 4px solid; overflow: hidden;
     }
     .forfait-header {
-      padding: 1rem 1.25rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      padding: 1rem 1.25rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
     }
     .forfait-header:hover { background: rgba(255,255,255,.02); }
-    .forfait-title {
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-    }
-    .forfait-code {
-      font-size: 1.1rem;
-      font-weight: 700;
-      width: 2.5rem;
-    }
+    .forfait-title { display: flex; align-items: center; gap: .75rem; }
+    .forfait-code { font-size: 1.1rem; font-weight: 700; width: 2.5rem; }
     .forfait-label { font-weight: 600; }
     .forfait-desc { font-size: .82rem; color: var(--text2); }
     .forfait-body {
-      display: none;
-      padding: 0 1.25rem 1.25rem;
-      border-top: 1px solid var(--border);
+      display: none; padding: 0 1.25rem 1.25rem; border-top: 1px solid var(--border);
     }
     .forfait-card.open .forfait-body { display: block; }
     .forfait-card.open .chevron { transform: rotate(180deg); }
 
-    .action-list { list-style: none; margin-top: .5rem; }
-    .action-list li {
-      padding: .45rem .6rem;
-      border-radius: 6px;
-      display: flex;
-      gap: .75rem;
-      align-items: baseline;
-      font-size: .88rem;
-    }
-    .action-list li:hover { background: var(--surface2); }
-    .action-code {
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      font-size: .78rem;
-      font-weight: 600;
-      color: var(--accent);
-      min-width: 2.5rem;
-    }
-    .action-label { font-weight: 500; }
-    .action-desc { color: var(--text2); font-size: .8rem; margin-left: auto; }
-    .inherited-tag {
-      font-size: .65rem;
-      background: rgba(139,92,246,.15);
-      color: #a78bfa;
-      padding: .1rem .4rem;
-      border-radius: 4px;
-      margin-left: .5rem;
-    }
-
     /* Actions catalog */
     .domain-section { margin-bottom: 1.5rem; }
     .domain-header {
-      font-size: 1rem;
-      font-weight: 600;
-      padding: .5rem 0;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: .5rem;
-      color: var(--accent);
+      font-size: 1rem; font-weight: 600; padding: .5rem 0;
+      border-bottom: 1px solid var(--border); margin-bottom: .5rem; color: var(--accent);
     }
-
-    .actions-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: .88rem;
-    }
+    .actions-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
     .actions-table th {
-      text-align: left;
-      padding: .5rem .75rem;
-      background: var(--surface2);
-      font-weight: 600;
-      font-size: .78rem;
-      text-transform: uppercase;
-      letter-spacing: .5px;
-      color: var(--text2);
+      text-align: left; padding: .5rem .75rem; background: var(--surface2);
+      font-weight: 600; font-size: .78rem; text-transform: uppercase;
+      letter-spacing: .5px; color: var(--text2);
     }
-    .actions-table td {
-      padding: .5rem .75rem;
-      border-bottom: 1px solid rgba(71,85,105,.3);
-    }
+    .actions-table td { padding: .5rem .75rem; border-bottom: 1px solid rgba(71,85,105,.3); }
     .actions-table tr:hover td { background: rgba(59,130,246,.04); }
     .actions-table .code-cell {
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      font-weight: 600;
-      color: var(--accent);
-      width: 3.5rem;
+      font-family: 'SF Mono', 'Fira Code', monospace; font-weight: 600; color: var(--accent); width: 3.5rem;
     }
 
     /* Matrix */
     .matrix-wrapper { overflow-x: auto; margin-top: 1rem; }
-    .matrix-table {
-      border-collapse: collapse;
-      font-size: .78rem;
-      width: 100%;
-      min-width: 900px;
-    }
+    .matrix-table { border-collapse: collapse; font-size: .78rem; width: 100%; min-width: 900px; }
     .matrix-table th, .matrix-table td {
-      padding: .45rem .6rem;
-      border: 1px solid var(--border);
-      text-align: center;
-      white-space: nowrap;
+      padding: .45rem .6rem; border: 1px solid var(--border); text-align: center; white-space: nowrap;
     }
     .matrix-table th {
-      background: var(--surface2);
-      font-weight: 600;
-      position: sticky;
-      top: 52px;
-      z-index: 10;
+      background: var(--surface2); font-weight: 600; position: sticky; top: 52px; z-index: 10;
     }
-    .matrix-table th:first-child,
-    .matrix-table th:nth-child(2) { text-align: left; }
-    .matrix-table td:first-child,
-    .matrix-table td:nth-child(2) { text-align: left; font-weight: 500; }
+    .matrix-table th:first-child, .matrix-table th:nth-child(2) { text-align: left; }
+    .matrix-table td:first-child, .matrix-table td:nth-child(2) { text-align: left; font-weight: 500; }
     .matrix-table td:first-child { color: var(--text2); font-size: .75rem; }
     .matrix-table tbody tr:hover td { background: rgba(59,130,246,.06); }
     .matrix-cell-active { color: var(--text); font-weight: 500; }
     .matrix-cell-na { color: var(--surface2); }
     .brand-row td { background: var(--surface2) !important; font-weight: 700 !important; color: var(--text) !important; }
 
-    /* Stats */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .stat-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
-      text-align: center;
-    }
-    .stat-value { font-size: 2rem; font-weight: 700; color: var(--accent); }
-    .stat-label { font-size: .82rem; color: var(--text2); margin-top: .2rem; }
-
-    /* Search */
-    .search-bar {
-      display: flex;
-      gap: .75rem;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .search-input {
-      flex: 1;
-      min-width: 200px;
-      padding: .65rem 1rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--text);
-      font-size: .9rem;
-      outline: none;
-    }
-    .search-input:focus { border-color: var(--accent); }
-    .search-input::placeholder { color: var(--text2); }
-    .filter-btn {
-      padding: .5rem 1rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--text2);
-      font-size: .82rem;
-      cursor: pointer;
-      transition: all .15s;
-    }
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--accent);
-      color: white;
-      border-color: var(--accent);
-    }
-
-    /* Cycle visual */
-    .cycle-container { margin-top: 1.5rem; }
-    .cycle-row {
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      margin-bottom: .25rem;
-    }
+    /* Cycle */
+    .cycle-row { display: flex; align-items: center; gap: .5rem; margin-bottom: .25rem; }
     .cycle-km {
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      font-size: .82rem;
-      color: var(--text2);
-      min-width: 7rem;
-      text-align: right;
+      font-family: 'SF Mono', 'Fira Code', monospace; font-size: .82rem;
+      color: var(--text2); min-width: 7rem; text-align: right;
     }
     .cycle-bar {
-      height: 28px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      padding: 0 .75rem;
-      font-size: .78rem;
-      font-weight: 600;
-      color: white;
-      min-width: 120px;
+      height: 28px; border-radius: 6px; display: flex; align-items: center;
+      padding: 0 .75rem; font-size: .78rem; font-weight: 600; color: white; min-width: 120px;
     }
-    .cycle-connector {
-      width: 2px;
-      height: 12px;
-      background: var(--border);
-      margin-left: 8.5rem;
-    }
+    .cycle-connector { width: 2px; height: 12px; background: var(--border); margin-left: 8.5rem; }
 
-    /* Print */
+    /* Resolver */
+    .resolver-container { margin-top: 1.5rem; }
+    .resolver-select {
+      padding: .5rem .75rem; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-size: .9rem; outline: none; min-width: 200px;
+    }
+    .resolver-select:focus { border-color: var(--accent); }
+
     @media print {
       body { background: white; color: black; }
       .tabs, .search-bar { display: none; }
       .section { display: block !important; page-break-before: always; }
       .model-body, .forfait-body { display: block !important; }
-      .card, .model-card, .forfait-card { border-color: #ccc; }
     }
-
     @media (max-width: 768px) {
       .header h1 { font-size: 1.3rem; }
-      .schedule-grid { grid-template-columns: 1fr; }
-      .action-desc { display: none; }
       .tab { padding: .7rem 1rem; font-size: .8rem; }
     }
   </style>
@@ -420,20 +280,19 @@
 
 <div class="header">
   <h1>Plans d'entretien — Flotte Bus & Autocars</h1>
-  <p>6 marques &bull; 31 modeles &bull; 8 forfaits mutualises &bull; 60+ actions</p>
+  <p>6 marques &bull; 31 modeles &bull; 8 forfaits &bull; Heritage : base → categorie → carburant → marque → modele</p>
 </div>
 
 <nav class="tabs" id="tabs">
-  <button class="tab active" data-tab="vehicules">Vehicules par marque</button>
+  <button class="tab active" data-tab="vehicules">Vehicules</button>
   <button class="tab" data-tab="forfaits">Forfaits</button>
-  <button class="tab" data-tab="actions">Catalogue actions</button>
+  <button class="tab" data-tab="actions">Actions</button>
   <button class="tab" data-tab="matrice">Matrice</button>
-  <button class="tab" data-tab="cycles">Cycles d'entretien</button>
+  <button class="tab" data-tab="resolver">Resolveur</button>
+  <button class="tab" data-tab="cycles">Cycles</button>
 </nav>
 
 <div class="container">
-
-  <!-- TAB: Vehicules -->
   <div class="section active" id="section-vehicules">
     <div class="search-bar">
       <input type="text" class="search-input" id="search-models" placeholder="Rechercher un modele...">
@@ -448,30 +307,39 @@
     <div id="models-list"></div>
   </div>
 
-  <!-- TAB: Forfaits -->
   <div class="section" id="section-forfaits">
     <div class="stats-grid" id="forfait-stats"></div>
     <div id="forfaits-list"></div>
   </div>
 
-  <!-- TAB: Actions -->
   <div class="section" id="section-actions">
     <div class="search-bar">
-      <input type="text" class="search-input" id="search-actions" placeholder="Rechercher une action (code ou description)...">
+      <input type="text" class="search-input" id="search-actions" placeholder="Rechercher une action...">
     </div>
     <div id="actions-catalog"></div>
   </div>
 
-  <!-- TAB: Matrice -->
   <div class="section" id="section-matrice">
     <div class="card">
       <h3>Matrice Forfaits x Modeles</h3>
-      <p style="color:var(--text2);font-size:.85rem;margin-bottom:.75rem;">Periodicite de chaque forfait par modele de vehicule</p>
       <div class="matrix-wrapper" id="matrix-container"></div>
     </div>
   </div>
 
-  <!-- TAB: Cycles -->
+  <div class="section" id="section-resolver">
+    <div class="card">
+      <h3>Resolveur d'actions par vehicule</h3>
+      <p style="color:var(--text2);font-size:.88rem;margin-bottom:1rem;">
+        Selectionnez un vehicule et un forfait pour voir toutes les actions resolues avec leur niveau d'heritage.
+      </p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <select class="resolver-select" id="resolver-vehicle"></select>
+        <select class="resolver-select" id="resolver-forfait"></select>
+      </div>
+      <div id="resolver-result"></div>
+    </div>
+  </div>
+
   <div class="section" id="section-cycles">
     <div class="search-bar">
       <button class="filter-btn active" data-cycle="autocar">Autocar (120 000 km)</button>
@@ -481,67 +349,165 @@
     </div>
     <div class="card" id="cycle-display"></div>
   </div>
-
 </div>
 
 <script>
-const DATA = /* loaded inline */ null;
-
-/* We load from the JSON file next to this HTML */
 let data;
+const FC = {
+  F1:'#3b82f6',F2:'#8b5cf6',F3:'#ef4444',F4:'#f59e0b',
+  F5:'#06b6d4',F6:'#10b981',F7:'#84cc16',F8:'#6b7280'
+};
+const levelColors = {
+  base:'#3b82f6', categorie:'#8b5cf6', carburant:'#84cc16', marque:'#f59e0b', modele:'#ef4444'
+};
+const levelLabels = {
+  base:'Base', categorie:'Categorie', carburant:'Carburant', marque:'Marque', modele:'Modele'
+};
 
 async function loadData() {
-  try {
-    const resp = await fetch('plan-entretien.json');
-    data = await resp.json();
-  } catch {
-    /* fallback: embedded minimal */
-    alert('Impossible de charger plan-entretien.json. Placez ce fichier HTML a cote du JSON.');
-    return;
-  }
+  try { data = await (await fetch('plan-entretien.json')).json(); }
+  catch { alert('Impossible de charger plan-entretien.json'); return; }
   init();
 }
 
-/* ---- TABS ---- */
-document.querySelectorAll('.tab').forEach(t => {
-  t.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
-    document.querySelectorAll('.section').forEach(x => x.classList.remove('active'));
-    t.classList.add('active');
-    document.getElementById('section-' + t.dataset.tab).classList.add('active');
-  });
-});
+/* Tabs */
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  document.getElementById('section-' + t.dataset.tab).classList.add('active');
+}));
 
-/* ---- HELPERS ---- */
-const forfaitColors = {
-  F1: '#3b82f6', F2: '#8b5cf6', F3: '#ef4444', F4: '#f59e0b',
-  F5: '#06b6d4', F6: '#10b981', F7: '#84cc16', F8: '#6b7280'
-};
-
-function getActionLabel(code) {
-  for (const domain of Object.values(data.actions)) {
-    if (domain.items[code]) return domain.items[code].label;
-  }
-  return code;
+/* Helpers */
+function getAction(code) {
+  for (const d of Object.values(data.actions)) if (d.items[code]) return d.items[code];
+  return { label: code, description: '' };
 }
 
-function getActionDesc(code) {
-  for (const domain of Object.values(data.actions)) {
-    if (domain.items[code]) return domain.items[code].description;
-  }
-  return '';
-}
-
-function getAllForfaitActions(forfaitKey) {
+function resolveForfait(forfaitKey, vehicle) {
   const f = data.forfaits[forfaitKey];
-  let actions = [...f.actions];
+  if (!f) return { levels: [], allActions: [], removed: [] };
+
+  // First resolve parent
+  let parentLevels = [];
   if (f.includes) {
-    actions = [...getAllForfaitActions(f.includes), ...actions];
+    const parent = resolveForfait(f.includes, vehicle);
+    parentLevels = parent.levels;
   }
-  return actions;
+
+  const levels = [];
+  const removed = new Set();
+
+  // Base
+  if (f.base?.length) levels.push({ level: 'base', label: `${forfaitKey} — Base`, actions: [...f.base], note: null });
+
+  // Categorie
+  const catOverlay = f.par_categorie?.[vehicle.categorie];
+  if (catOverlay?.add?.length || catOverlay?.remove?.length) {
+    levels.push({
+      level: 'categorie',
+      label: `Categorie : ${data.categories[vehicle.categorie]?.label || vehicle.categorie}`,
+      actions: catOverlay.add || [], note: catOverlay.note
+    });
+    (catOverlay.remove || []).forEach(a => removed.add(a));
+  }
+
+  // Carburant
+  const carbOverlay = f.par_carburant?.[vehicle.carburant];
+  if (carbOverlay?.add?.length || carbOverlay?.remove?.length) {
+    levels.push({
+      level: 'carburant',
+      label: `Carburant : ${vehicle.carburant.toUpperCase()}`,
+      actions: carbOverlay.add || [], note: carbOverlay.note
+    });
+    (carbOverlay.remove || []).forEach(a => removed.add(a));
+  }
+
+  // Marque
+  const marqueOverlay = f.par_marque?.[vehicle.marque];
+  if (marqueOverlay?.add?.length) {
+    levels.push({
+      level: 'marque',
+      label: `Marque : ${vehicle.marque}`,
+      actions: marqueOverlay.add, note: marqueOverlay.note
+    });
+  }
+
+  // Modele
+  const modelOverlay = f.par_modele?.[vehicle.nom];
+  if (modelOverlay?.add?.length) {
+    levels.push({
+      level: 'modele',
+      label: `Modele : ${vehicle.nom}`,
+      actions: modelOverlay.add, note: modelOverlay.note
+    });
+  }
+
+  const allLevels = [...parentLevels, ...levels];
+  const allActions = [];
+  const seen = new Set();
+  for (const l of allLevels) {
+    for (const a of l.actions) {
+      if (!seen.has(a) && !removed.has(a)) { allActions.push(a); seen.add(a); }
+    }
+  }
+
+  return { levels: allLevels, allActions, removed: [...removed] };
 }
 
-/* ---- RENDER: Models ---- */
+function getVehicleList() {
+  const list = [];
+  for (const [marque, info] of Object.entries(data.marques)) {
+    for (const m of info.modeles) {
+      list.push({ ...m, marque });
+    }
+  }
+  return list;
+}
+
+/* Heritage HTML */
+function renderHeritage(resolved, forfaitKey) {
+  const color = FC[forfaitKey];
+  let html = '<div class="heritage-panel">';
+
+  for (const level of resolved.levels) {
+    const lc = levelColors[level.level];
+    html += `<div class="heritage-level level-${level.level}" style="border-left-color:${lc}">`;
+    html += `<div class="heritage-level-header">`;
+    html += `<span class="heritage-level-tag" style="background:${lc}20;color:${lc}">${levelLabels[level.level]}</span>`;
+    html += `<span>${level.label}</span></div>`;
+
+    if (level.actions.length) {
+      html += '<ul class="heritage-actions">';
+      for (const code of level.actions) {
+        const a = getAction(code);
+        const isRemoved = resolved.removed.includes(code);
+        html += `<li class="${isRemoved ? 'action-removed' : ''}">`;
+        html += `<span class="action-code">${code}</span>`;
+        html += `<span>${a.label}</span></li>`;
+      }
+      html += '</ul>';
+    } else {
+      html += '<div class="no-actions">Aucune action ajoutee a ce niveau</div>';
+    }
+    if (level.note) html += `<div class="heritage-note">${level.note}</div>`;
+    html += '</div>';
+  }
+
+  if (resolved.removed.length) {
+    html += '<div style="margin-top:.5rem;font-size:.8rem;color:#ef4444;">Actions retirees : ';
+    html += resolved.removed.map(c => `<span class="action-code" style="color:#ef4444">${c}</span> ${getAction(c).label}`).join(', ');
+    html += '</div>';
+  }
+
+  html += `<div class="heritage-summary">`;
+  html += `<div class="heritage-summary-title" style="color:${color}">Total actions resolues : ${resolved.allActions.length}</div>`;
+  html += `<div class="heritage-summary-count">${resolved.allActions.map(c => `<span class="action-code">${c}</span>`).join(' ')}</div>`;
+  html += '</div></div>';
+  return html;
+}
+
+/* RENDER: Models */
 function renderModels(filter = 'all', search = '') {
   const container = document.getElementById('models-list');
   let html = '';
@@ -549,102 +515,209 @@ function renderModels(filter = 'all', search = '') {
 
   for (const [marque, info] of Object.entries(data.marques)) {
     let models = info.modeles;
-    if (filter === 'gnv') {
-      models = models.filter(m => m.carburant === 'gnv');
-    } else if (filter !== 'all') {
-      models = models.filter(m => m.categorie === filter);
-    }
-    if (s) {
-      models = models.filter(m => m.nom.toLowerCase().includes(s) || marque.toLowerCase().includes(s));
-    }
+    if (filter === 'gnv') models = models.filter(m => m.carburant === 'gnv');
+    else if (filter !== 'all') models = models.filter(m => m.categorie === filter);
+    if (s) models = models.filter(m => m.nom.toLowerCase().includes(s) || marque.toLowerCase().includes(s));
     if (!models.length) continue;
 
-    html += `<div class="brand-header"><h2>${marque}</h2><span class="brand-count">${models.length} modele${models.length > 1 ? 's' : ''}</span></div>`;
+    html += `<div class="brand-header"><h2>${marque}</h2><span class="brand-count">${models.length}</span></div>`;
 
     for (const m of models) {
-      const id = `model-${marque}-${m.nom}`.replace(/[^a-zA-Z0-9]/g, '_');
-      html += `<div class="model-card" id="${id}">`;
+      const uid = `m-${marque}-${m.nom}`.replace(/[^a-zA-Z0-9]/g, '_');
+      html += `<div class="model-card" id="${uid}">`;
       html += `<div class="model-header" onclick="this.parentElement.classList.toggle('open')">`;
       html += `<div><span class="model-name">${m.nom}</span>`;
-      html += `<div class="model-tags" style="margin-top:.3rem;">`;
+      html += `<div class="model-tags">`;
       html += `<span class="tag tag-${m.categorie}">${data.categories[m.categorie]?.label || m.categorie}</span>`;
       html += `<span class="tag tag-${m.carburant}">${m.carburant.toUpperCase()}</span>`;
-      html += `</div></div>`;
-      html += `<span class="chevron">&#9662;</span></div>`;
+      html += `</div></div><span class="chevron">&#9662;</span></div>`;
 
       html += `<div class="model-body">`;
-      if (m.particularite) {
-        html += `<div class="particularite">${m.particularite}</div>`;
-      }
-      html += `<div class="schedule-grid">`;
-      for (const [fk, period] of Object.entries(m.periodicite)) {
+      if (m.particularite) html += `<div class="particularite">${m.particularite}</div>`;
+
+      // Forfait tabs
+      const forfaitKeys = Object.keys(data.forfaits);
+      html += `<div class="forfait-tabs">`;
+      let first = true;
+      for (const fk of forfaitKeys) {
+        const period = m.periodicite[fk];
         const disabled = !period;
-        const color = forfaitColors[fk] || '#6b7280';
-        html += `<div class="schedule-item ${disabled ? 'disabled' : ''}" style="border-left-color:${color}">`;
-        html += `<div class="forfait-name" style="color:${disabled ? 'var(--text2)' : color}">${fk} — ${data.forfaits[fk]?.label || fk}</div>`;
-        html += `<div class="forfait-period">${period || 'N/A'}</div>`;
-        html += `</div>`;
+        html += `<button class="forfait-tab ${first && !disabled ? 'active' : ''} ${disabled ? 'disabled' : ''}" `;
+        html += `style="border-color:${FC[fk]}" data-uid="${uid}" data-fk="${fk}" `;
+        html += `onclick="selectModelForfait('${uid}','${fk}','${marque}')"`;
+        html += `${disabled ? ' disabled' : ''}>${fk}${period ? ` — ${period}` : ''}</button>`;
+        if (!disabled && first) first = false;
       }
-      html += `</div></div></div>`;
+      html += '</div>';
+
+      // Heritage panel placeholder
+      html += `<div id="heritage-${uid}"></div>`;
+      html += '</div></div>';
     }
   }
-
   if (!html) html = '<div class="card" style="text-align:center;color:var(--text2)">Aucun modele trouve</div>';
   container.innerHTML = html;
+
+  // Auto-render first forfait for open cards
+  document.querySelectorAll('.forfait-tab.active').forEach(btn => {
+    const uid = btn.dataset.uid;
+    const fk = btn.dataset.fk;
+    const marque = findMarqueByUid(uid);
+    if (marque) selectModelForfait(uid, fk, marque);
+  });
 }
 
-/* ---- RENDER: Forfaits ---- */
+function findMarqueByUid(uid) {
+  for (const [marque, info] of Object.entries(data.marques)) {
+    for (const m of info.modeles) {
+      if (`m-${marque}-${m.nom}`.replace(/[^a-zA-Z0-9]/g, '_') === uid) return marque;
+    }
+  }
+  return null;
+}
+
+function findVehicleByUid(uid, marque) {
+  const info = data.marques[marque];
+  if (!info) return null;
+  for (const m of info.modeles) {
+    if (`m-${marque}-${m.nom}`.replace(/[^a-zA-Z0-9]/g, '_') === uid) return { ...m, marque };
+  }
+  return null;
+}
+
+window.selectModelForfait = function(uid, fk, marque) {
+  // Toggle active tab
+  document.querySelectorAll(`.forfait-tab[data-uid="${uid}"]`).forEach(b => b.classList.remove('active'));
+  const btn = document.querySelector(`.forfait-tab[data-uid="${uid}"][data-fk="${fk}"]`);
+  if (btn) btn.classList.add('active');
+
+  const vehicle = findVehicleByUid(uid, marque);
+  if (!vehicle) return;
+
+  const resolved = resolveForfait(fk, vehicle);
+  document.getElementById(`heritage-${uid}`).innerHTML = renderHeritage(resolved, fk);
+};
+
+/* RENDER: Forfaits */
 function renderForfaits() {
   const statsEl = document.getElementById('forfait-stats');
   const listEl = document.getElementById('forfaits-list');
 
-  // Stats
   let totalActions = 0;
-  for (const domain of Object.values(data.actions)) totalActions += Object.keys(domain.items).length;
+  for (const d of Object.values(data.actions)) totalActions += Object.keys(d.items).length;
   const totalModels = Object.values(data.marques).reduce((a, b) => a + b.modeles.length, 0);
 
   statsEl.innerHTML = `
     <div class="stat-card"><div class="stat-value">${Object.keys(data.forfaits).length}</div><div class="stat-label">Forfaits</div></div>
-    <div class="stat-card"><div class="stat-value">${totalActions}</div><div class="stat-label">Actions cataloguees</div></div>
-    <div class="stat-card"><div class="stat-value">${totalModels}</div><div class="stat-label">Modeles de vehicules</div></div>
-    <div class="stat-card"><div class="stat-value">${Object.keys(data.marques).length}</div><div class="stat-label">Marques</div></div>
-  `;
+    <div class="stat-card"><div class="stat-value">${totalActions}</div><div class="stat-label">Actions</div></div>
+    <div class="stat-card"><div class="stat-value">${totalModels}</div><div class="stat-label">Modeles</div></div>
+    <div class="stat-card"><div class="stat-value">5</div><div class="stat-label">Niveaux d'heritage</div></div>`;
 
   let html = '';
   for (const [key, f] of Object.entries(data.forfaits)) {
-    const color = forfaitColors[key] || '#6b7280';
-    const allActions = getAllForfaitActions(key);
-    const ownActions = f.actions;
-
+    const color = FC[key];
     html += `<div class="forfait-card" style="border-left-color:${color}">`;
     html += `<div class="forfait-header" onclick="this.parentElement.classList.toggle('open')">`;
-    html += `<div class="forfait-title">`;
-    html += `<span class="forfait-code" style="color:${color}">${key}</span>`;
-    html += `<div><div class="forfait-label">${f.label}</div><div class="forfait-desc">${f.description} &bull; ${allActions.length} actions</div></div>`;
-    html += `</div><span class="chevron">&#9662;</span></div>`;
+    html += `<div class="forfait-title"><span class="forfait-code" style="color:${color}">${key}</span>`;
+    html += `<div><div class="forfait-label">${f.label}</div>`;
+    html += `<div class="forfait-desc">${f.description}${f.includes ? ` (herite de ${f.includes})` : ''}</div></div></div>`;
+    html += `<span class="chevron">&#9662;</span></div>`;
 
     html += `<div class="forfait-body">`;
-    if (f.note) {
-      html += `<div class="particularite">${f.note}</div>`;
-    }
+
+    // Base actions
+    html += `<div class="heritage-level level-base" style="border-left-color:${levelColors.base}">`;
+    html += `<div class="heritage-level-header"><span class="heritage-level-tag" style="background:${levelColors.base}20;color:${levelColors.base}">Base</span> Actions communes a tous</div>`;
     if (f.includes) {
-      html += `<p style="font-size:.82rem;color:var(--text2);margin:.5rem 0;">Inclut le forfait <strong style="color:${forfaitColors[f.includes]}">${f.includes} — ${data.forfaits[f.includes].label}</strong></p>`;
+      html += `<div style="font-size:.8rem;color:var(--text2);margin-bottom:.3rem;">+ actions heritees de <strong style="color:${FC[f.includes]}">${f.includes}</strong></div>`;
     }
-    html += `<ul class="action-list">`;
-    for (const code of allActions) {
-      const inherited = !ownActions.includes(code);
-      html += `<li>`;
-      html += `<span class="action-code">${code}</span>`;
-      html += `<span class="action-label">${getActionLabel(code)}${inherited ? `<span class="inherited-tag">via ${f.includes}</span>` : ''}</span>`;
-      html += `<span class="action-desc">${getActionDesc(code)}</span>`;
-      html += `</li>`;
+    html += '<ul class="heritage-actions">';
+    for (const code of f.base) {
+      const a = getAction(code);
+      html += `<li><span class="action-code">${code}</span><span>${a.label}</span></li>`;
     }
-    html += `</ul></div></div>`;
+    html += '</ul></div>';
+
+    // Category overlays
+    if (f.par_categorie && Object.keys(f.par_categorie).length) {
+      html += `<div class="heritage-level level-categorie" style="border-left-color:${levelColors.categorie}">`;
+      html += `<div class="heritage-level-header"><span class="heritage-level-tag" style="background:${levelColors.categorie}20;color:${levelColors.categorie}">Categorie</span> Ajouts par type de vehicule</div>`;
+      for (const [cat, ov] of Object.entries(f.par_categorie)) {
+        if (!ov.add?.length && !ov.note) continue;
+        html += `<div style="margin:.3rem 0 .3rem 1rem;"><strong style="font-size:.82rem;">${data.categories[cat]?.label || cat}</strong>`;
+        if (ov.add?.length) {
+          html += '<ul class="heritage-actions">';
+          for (const c of ov.add) html += `<li><span class="action-code">${c}</span><span>${getAction(c).label}</span></li>`;
+          html += '</ul>';
+        }
+        if (ov.note) html += `<div class="heritage-note">${ov.note}</div>`;
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+
+    // Carburant overlays
+    if (f.par_carburant && Object.keys(f.par_carburant).length) {
+      for (const [carb, ov] of Object.entries(f.par_carburant)) {
+        if (!ov.add?.length && !ov.remove?.length) continue;
+        html += `<div class="heritage-level level-carburant" style="border-left-color:${levelColors.carburant}">`;
+        html += `<div class="heritage-level-header"><span class="heritage-level-tag" style="background:${levelColors.carburant}20;color:${levelColors.carburant}">Carburant</span> ${carb.toUpperCase()}</div>`;
+        if (ov.add?.length) {
+          html += '<ul class="heritage-actions">';
+          for (const c of ov.add) html += `<li><span class="action-code">${c}</span><span>+ ${getAction(c).label}</span></li>`;
+          html += '</ul>';
+        }
+        if (ov.remove?.length) {
+          html += '<ul class="heritage-actions">';
+          for (const c of ov.remove) html += `<li class="action-removed"><span class="action-code">${c}</span><span>- ${getAction(c).label}</span></li>`;
+          html += '</ul>';
+        }
+        if (ov.note) html += `<div class="heritage-note">${ov.note}</div>`;
+        html += '</div>';
+      }
+    }
+
+    // Marque overlays
+    if (f.par_marque && Object.keys(f.par_marque).length) {
+      const hasContent = Object.values(f.par_marque).some(ov => ov.add?.length);
+      if (hasContent) {
+        html += `<div class="heritage-level level-marque" style="border-left-color:${levelColors.marque}">`;
+        html += `<div class="heritage-level-header"><span class="heritage-level-tag" style="background:${levelColors.marque}20;color:${levelColors.marque}">Marque</span> Ajouts par constructeur</div>`;
+        for (const [m, ov] of Object.entries(f.par_marque)) {
+          if (!ov.add?.length) continue;
+          html += `<div style="margin:.3rem 0 .3rem 1rem;"><strong style="font-size:.82rem;">${m}</strong>`;
+          html += '<ul class="heritage-actions">';
+          for (const c of ov.add) html += `<li><span class="action-code">${c}</span><span>${getAction(c).label}</span></li>`;
+          html += '</ul>';
+          if (ov.note) html += `<div class="heritage-note">${ov.note}</div>`;
+          html += '</div>';
+        }
+        html += '</div>';
+      }
+    }
+
+    // Model overlays
+    if (f.par_modele && Object.keys(f.par_modele).length) {
+      html += `<div class="heritage-level level-modele" style="border-left-color:${levelColors.modele}">`;
+      html += `<div class="heritage-level-header"><span class="heritage-level-tag" style="background:${levelColors.modele}20;color:${levelColors.modele}">Modele</span> Ajouts par vehicule specifique</div>`;
+      for (const [m, ov] of Object.entries(f.par_modele)) {
+        if (!ov.add?.length) continue;
+        html += `<div style="margin:.3rem 0 .3rem 1rem;"><strong style="font-size:.82rem;">${m}</strong>`;
+        html += '<ul class="heritage-actions">';
+        for (const c of ov.add) html += `<li><span class="action-code">${c}</span><span>${getAction(c).label}</span></li>`;
+        html += '</ul>';
+        if (ov.note) html += `<div class="heritage-note">${ov.note}</div>`;
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+
+    html += '</div></div>';
   }
   listEl.innerHTML = html;
 }
 
-/* ---- RENDER: Actions catalog ---- */
+/* RENDER: Actions */
 function renderActions(search = '') {
   const container = document.getElementById('actions-catalog');
   const s = search.toLowerCase();
@@ -656,184 +729,184 @@ function renderActions(search = '') {
     );
     if (!items.length) continue;
 
-    html += `<div class="domain-section">`;
-    html += `<div class="domain-header">${domKey} — ${domain.label}</div>`;
-    html += `<table class="actions-table"><thead><tr><th>Code</th><th>Action</th><th>Description</th><th>Forfaits</th></tr></thead><tbody>`;
+    html += `<div class="domain-section"><div class="domain-header">${domKey} — ${domain.label}</div>`;
+    html += '<table class="actions-table"><thead><tr><th>Code</th><th>Action</th><th>Description</th><th>Forfaits (base)</th><th>Specifique a</th></tr></thead><tbody>';
 
     for (const [code, a] of items) {
-      // find which forfaits use this action
-      const usedIn = [];
+      const inBase = [], inOverlay = [];
       for (const [fk, f] of Object.entries(data.forfaits)) {
-        if (f.actions.includes(code)) usedIn.push(fk);
+        if (f.base?.includes(code)) inBase.push(fk);
+        else {
+          let found = false;
+          for (const layers of [f.par_categorie, f.par_carburant, f.par_marque, f.par_modele]) {
+            if (!layers) continue;
+            for (const ov of Object.values(layers)) {
+              if (ov.add?.includes(code)) { found = true; break; }
+            }
+            if (found) break;
+          }
+          if (found) inOverlay.push(fk);
+        }
       }
-      html += `<tr>`;
-      html += `<td class="code-cell">${code}</td>`;
-      html += `<td>${a.label}</td>`;
+      html += `<tr><td class="code-cell">${code}</td><td>${a.label}</td>`;
       html += `<td style="color:var(--text2)">${a.description}</td>`;
-      html += `<td>${usedIn.map(f => `<span style="color:${forfaitColors[f]};font-weight:600;margin-right:.3rem;">${f}</span>`).join('')}</td>`;
-      html += `</tr>`;
+      html += `<td>${inBase.map(f => `<span style="color:${FC[f]};font-weight:600;margin-right:.3rem">${f}</span>`).join('')}</td>`;
+      html += `<td>${inOverlay.map(f => `<span style="color:${FC[f]};font-weight:600;margin-right:.3rem;opacity:.6">${f}</span>`).join('')}</td>`;
+      html += '</tr>';
     }
-    html += `</tbody></table></div>`;
+    html += '</tbody></table></div>';
   }
-
   if (!html) html = '<div class="card" style="text-align:center;color:var(--text2)">Aucune action trouvee</div>';
   container.innerHTML = html;
 }
 
-/* ---- RENDER: Matrix ---- */
+/* RENDER: Matrix */
 function renderMatrix() {
   const container = document.getElementById('matrix-container');
-  const forfaitKeys = Object.keys(data.forfaits);
-
-  let html = '<table class="matrix-table"><thead><tr>';
-  html += '<th>Marque</th><th>Modele</th>';
-  for (const fk of forfaitKeys) {
-    html += `<th style="color:${forfaitColors[fk]}">${fk}</th>`;
-  }
+  const fks = Object.keys(data.forfaits);
+  let html = '<table class="matrix-table"><thead><tr><th>Marque</th><th>Modele</th>';
+  for (const fk of fks) html += `<th style="color:${FC[fk]}">${fk}</th>`;
   html += '</tr></thead><tbody>';
-
   for (const [marque, info] of Object.entries(data.marques)) {
-    html += `<tr class="brand-row"><td colspan="${2 + forfaitKeys.length}">${marque}</td></tr>`;
+    html += `<tr class="brand-row"><td colspan="${2 + fks.length}">${marque}</td></tr>`;
     for (const m of info.modeles) {
-      html += '<tr>';
-      html += `<td>${marque}</td>`;
-      html += `<td>${m.nom}</td>`;
-      for (const fk of forfaitKeys) {
+      html += `<tr><td>${marque}</td><td>${m.nom}</td>`;
+      for (const fk of fks) {
         const v = m.periodicite[fk];
-        if (v) {
-          html += `<td class="matrix-cell-active">${v}</td>`;
-        } else {
-          html += `<td class="matrix-cell-na">—</td>`;
-        }
+        html += v ? `<td class="matrix-cell-active">${v}</td>` : '<td class="matrix-cell-na">—</td>';
       }
       html += '</tr>';
     }
   }
-
   html += '</tbody></table>';
   container.innerHTML = html;
 }
 
-/* ---- RENDER: Cycles ---- */
+/* RENDER: Resolver */
+function renderResolver() {
+  const vehicleSelect = document.getElementById('resolver-vehicle');
+  const forfaitSelect = document.getElementById('resolver-forfait');
+
+  let vhtml = '';
+  for (const [marque, info] of Object.entries(data.marques)) {
+    vhtml += `<optgroup label="${marque}">`;
+    for (const m of info.modeles) {
+      vhtml += `<option value="${marque}|${m.nom}">${m.nom} (${m.carburant.toUpperCase()})</option>`;
+    }
+    vhtml += '</optgroup>';
+  }
+  vehicleSelect.innerHTML = vhtml;
+
+  let fhtml = '';
+  for (const [fk, f] of Object.entries(data.forfaits)) {
+    fhtml += `<option value="${fk}">${fk} — ${f.label}</option>`;
+  }
+  forfaitSelect.innerHTML = fhtml;
+
+  const update = () => {
+    const [marque, nom] = vehicleSelect.value.split('|');
+    const vehicle = data.marques[marque]?.modeles.find(m => m.nom === nom);
+    if (!vehicle) return;
+    const fk = forfaitSelect.value;
+    const v = { ...vehicle, marque };
+    const resolved = resolveForfait(fk, v);
+    document.getElementById('resolver-result').innerHTML = renderHeritage(resolved, fk);
+  };
+
+  vehicleSelect.addEventListener('change', update);
+  forfaitSelect.addEventListener('change', update);
+  update();
+}
+
+/* RENDER: Cycles */
 const cycleData = {
   autocar: {
-    title: 'Cycle autocar diesel — 120 000 km',
+    title: 'Autocar diesel — Cycle 120 000 km',
     steps: [
-      { km: '0 km', forfaits: ['F1'], label: 'Vidange initiale' },
-      { km: '30 000 km', forfaits: ['F1'], label: 'Entretien courant' },
-      { km: '60 000 km', forfaits: ['F2'], label: 'Entretien intermediaire' },
-      { km: '90 000 km', forfaits: ['F1'], label: 'Entretien courant' },
-      { km: '120 000 km', forfaits: ['F3', 'F4'], label: 'Grand entretien + Transmission' },
+      { km: '0', f: ['F1'] }, { km: '30 000', f: ['F1'] }, { km: '60 000', f: ['F2'] },
+      { km: '90 000', f: ['F1'] }, { km: '120 000', f: ['F3', 'F4'] }
     ],
     annuel: ['F5 — Climatisation (1x/an)', 'F6 — Securite (1x/an + avant CT)'],
-    usure: ['F8 — Pneumatiques (a l\'usure, controle a chaque F1)']
+    usure: ['F8 — Pneumatiques (a l\'usure)']
   },
   interurbain: {
-    title: 'Cycle interurbain diesel — 100 000 km',
+    title: 'Interurbain diesel — Cycle 100 000 km',
     steps: [
-      { km: '0 km', forfaits: ['F1'], label: 'Vidange initiale' },
-      { km: '25 000 km', forfaits: ['F1'], label: 'Entretien courant' },
-      { km: '50 000 km', forfaits: ['F2'], label: 'Entretien intermediaire' },
-      { km: '75 000 km', forfaits: ['F1'], label: 'Entretien courant' },
-      { km: '100 000 km', forfaits: ['F3', 'F4'], label: 'Grand entretien + Transmission' },
+      { km: '0', f: ['F1'] }, { km: '25 000', f: ['F1'] }, { km: '50 000', f: ['F2'] },
+      { km: '75 000', f: ['F1'] }, { km: '100 000', f: ['F3', 'F4'] }
     ],
     annuel: ['F5 — Climatisation (1x/an)', 'F6 — Securite (1x/an)'],
     usure: ['F8 — Pneumatiques']
   },
   urbain: {
-    title: 'Cycle urbain diesel — 80 000 km',
+    title: 'Urbain diesel — Cycle 80 000 km',
     steps: [
-      { km: '0 km', forfaits: ['F1'], label: 'Vidange initiale' },
-      { km: '20 000 km', forfaits: ['F1'], label: 'Entretien courant' },
-      { km: '40 000 km', forfaits: ['F2'], label: 'Entretien intermediaire' },
-      { km: '60 000 km', forfaits: ['F1'], label: 'Entretien courant' },
-      { km: '80 000 km', forfaits: ['F3', 'F4'], label: 'Grand entretien + Transmission' },
+      { km: '0', f: ['F1'] }, { km: '20 000', f: ['F1'] }, { km: '40 000', f: ['F2'] },
+      { km: '60 000', f: ['F1'] }, { km: '80 000', f: ['F3', 'F4'] }
     ],
     annuel: ['F5 — Climatisation (2x/an)', 'F6 — Securite (2x/an)'],
     usure: ['F8 — Pneumatiques (controle mensuel)']
   },
   urbain_gnv: {
-    title: 'Cycle urbain GNV — 80 000 km',
+    title: 'Urbain GNV — Cycle 80 000 km',
     steps: [
-      { km: '0 km', forfaits: ['F1'], label: 'Vidange initiale' },
-      { km: '20 000 km', forfaits: ['F1'], label: 'Entretien courant' },
-      { km: '40 000 km', forfaits: ['F2', 'F7'], label: 'Intermediaire + GNV controle' },
-      { km: '60 000 km', forfaits: ['F1'], label: 'Entretien courant' },
-      { km: '80 000 km', forfaits: ['F3', 'F4', 'F7'], label: 'Grand entretien + Transmission + GNV complet' },
+      { km: '0', f: ['F1'] }, { km: '20 000', f: ['F1'] }, { km: '40 000', f: ['F2', 'F7'] },
+      { km: '60 000', f: ['F1'] }, { km: '80 000', f: ['F3', 'F4', 'F7'] }
     ],
     annuel: ['F5 — Climatisation (2x/an)', 'F6 — Securite (2x/an)'],
-    usure: ['F8 — Pneumatiques (controle mensuel)', 'Requalification reservoirs GNV tous les 4-5 ans']
+    usure: ['F8 — Pneumatiques (mensuel)', 'Requalification reservoirs GNV tous les 4-5 ans']
   }
 };
 
 function renderCycle(type = 'autocar') {
   const c = cycleData[type];
   const container = document.getElementById('cycle-display');
-
-  let html = `<h3>${c.title}</h3>`;
-  html += '<div class="cycle-container">';
-
+  let html = `<h3>${c.title}</h3><div style="margin-top:1rem;">`;
   for (let i = 0; i < c.steps.length; i++) {
     const step = c.steps[i];
     html += '<div class="cycle-row">';
-    html += `<span class="cycle-km">${step.km}</span>`;
-    for (const fk of step.forfaits) {
-      html += `<div class="cycle-bar" style="background:${forfaitColors[fk]}">${fk} ${data.forfaits[fk]?.label || ''}</div>`;
+    html += `<span class="cycle-km">${step.km} km</span>`;
+    for (const fk of step.f) {
+      html += `<div class="cycle-bar" style="background:${FC[fk]}">${fk} ${data.forfaits[fk]?.label || ''}</div>`;
     }
     html += '</div>';
-    if (i < c.steps.length - 1) {
-      html += '<div class="cycle-connector"></div>';
-    }
+    if (i < c.steps.length - 1) html += '<div class="cycle-connector"></div>';
   }
   html += '</div>';
-
   html += '<div style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem;">';
-  html += '<div class="card"><h3 style="color:#06b6d4">Entretiens periodiques</h3><ul style="list-style:none;margin-top:.5rem;">';
+  html += '<div class="card"><h3 style="color:#06b6d4">Periodiques</h3><ul style="list-style:none;margin-top:.5rem;">';
   for (const a of c.annuel) html += `<li style="padding:.3rem 0;font-size:.88rem;">${a}</li>`;
   html += '</ul></div>';
-  html += '<div class="card"><h3 style="color:#6b7280">A l\'usure / conditionnel</h3><ul style="list-style:none;margin-top:.5rem;">';
+  html += '<div class="card"><h3 style="color:#6b7280">A l\'usure</h3><ul style="list-style:none;margin-top:.5rem;">';
   for (const u of c.usure) html += `<li style="padding:.3rem 0;font-size:.88rem;">${u}</li>`;
   html += '</ul></div></div>';
-
   container.innerHTML = html;
 }
 
-/* ---- EVENTS ---- */
+/* INIT */
 function init() {
   renderModels();
   renderForfaits();
   renderActions();
   renderMatrix();
+  renderResolver();
   renderCycle('autocar');
 
-  // Model search
   document.getElementById('search-models').addEventListener('input', e => {
-    const active = document.querySelector('.filter-btn.active[data-filter]');
-    renderModels(active?.dataset.filter || 'all', e.target.value);
+    const f = document.querySelector('.filter-btn.active[data-filter]');
+    renderModels(f?.dataset.filter || 'all', e.target.value);
   });
-
-  // Model filters
-  document.querySelectorAll('[data-filter]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderModels(btn.dataset.filter, document.getElementById('search-models').value);
-    });
-  });
-
-  // Action search
-  document.getElementById('search-actions').addEventListener('input', e => {
-    renderActions(e.target.value);
-  });
-
-  // Cycle toggles
-  document.querySelectorAll('[data-cycle]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-cycle]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderCycle(btn.dataset.cycle);
-    });
-  });
+  document.querySelectorAll('[data-filter]').forEach(btn => btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderModels(btn.dataset.filter, document.getElementById('search-models').value);
+  }));
+  document.getElementById('search-actions').addEventListener('input', e => renderActions(e.target.value));
+  document.querySelectorAll('[data-cycle]').forEach(btn => btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-cycle]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCycle(btn.dataset.cycle);
+  }));
 }
 
 loadData();
